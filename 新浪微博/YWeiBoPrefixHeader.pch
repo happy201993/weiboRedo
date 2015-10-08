@@ -1,0 +1,28 @@
+//
+//  YWeiBoPrefixHeader.pch
+//  新浪微博
+//
+//  Created by 杨少伟 on 15/10/5.
+//  Copyright © 2015年 YCompany. All rights reserved.
+//
+
+#ifndef YWeiBoPrefixHeader_pch
+#define YWeiBoPrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#import "UIViewExt.h"
+
+#define YScreenWidth [UIScreen mainScreen].bounds.size.width
+#define YScreenHeight [UIScreen mainScreen].bounds.size.height
+#define YRGB(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:a]
+
+#define iOS7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
+
+#ifdef DEBUG 
+    #define YLog(...) NSLog(__VA_ARGS__)
+#else 
+    #define YLog(...)
+#endif
+
+#endif /* YWeiBoPrefixHeader_pch */

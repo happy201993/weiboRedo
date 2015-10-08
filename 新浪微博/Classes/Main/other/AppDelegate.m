@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "YTabBarController.h"
 @interface AppDelegate ()
 
 @end
@@ -17,6 +17,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    //01 创建窗口
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    
+    //02 创建根视图控制器
+    YTabBarController *tabbarVc = [[YTabBarController alloc] init];
+    //03 设置窗口根视图控制器
+    self.window.rootViewController = tabbarVc;
+    
+    //04 设置为主窗口并可见
+    [self.window makeKeyAndVisible];
+    
+    
     return YES;
 }
 
