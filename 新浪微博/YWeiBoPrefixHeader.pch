@@ -12,6 +12,7 @@
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 #import "UIViewExt.h"
+#import "UIImage+Extension.h"
 
 #define YScreenWidth [UIScreen mainScreen].bounds.size.width
 #define YScreenHeight [UIScreen mainScreen].bounds.size.height
@@ -24,5 +25,8 @@
 #else 
     #define YLog(...)
 #endif
+
+//首页标题文字的字体
+#define YTitleFont [UIFont boldSystemFontOfSize:18]
 
 #endif /* YWeiBoPrefixHeader_pch */

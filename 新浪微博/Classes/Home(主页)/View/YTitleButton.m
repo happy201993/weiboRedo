@@ -8,7 +8,7 @@
 
 #import "YTitleButton.h"
 #import "UIImage+Extension.h"
-
+#import "NSString+YExtension.h"
 @implementation YTitleButton
 
 /*
@@ -26,10 +26,16 @@
         //设置图片在高亮情况下不变灰
         self.adjustsImageWhenHighlighted = NO;
         
-        //设置选中时的背景
-        UIImage *selectedBackground = [UIImage resizeImage:@"navigationbar_filter_background_highlighted"];
-        [self setBackgroundImage:selectedBackground forState:UIControlStateHighlighted];
+        //设置图片的内容模式
+        self.imageView.contentMode = UIViewContentModeCenter;
         
+        //设置字体
+        self.titleLabel.font = YTitleFont;
+        
+        //设置title的对齐方式
+        self.titleLabel.textAlignment = NSTextAlignmentRight;
+//        self.imageView.backgroundColor = [UIColor redColor];
+//        self.titleLabel.backgroundColor = [UIColor yellowColor];
     }
     return self;
 }
@@ -45,9 +51,8 @@
 - (CGRect)imageRectForContentRect:(CGRect)contentRect
 {
     CGFloat imageY = 0;
-    YLog( @"imageW = %@",self.imageView);
-    CGFloat imageW = self.imageView.size.width;
     CGFloat imageH = self.height;
+    CGFloat imageW = imageH;
     CGFloat imageX = self.width - imageW;
     return CGRectMake(imageX, imageY, imageW, imageH);
 }
@@ -57,9 +62,21 @@
 {
     CGFloat titleX = 0;
     CGFloat titleY = 0;
-    CGFloat titleW = self.width - self.imageView.size.width;
+    CGFloat titleW = self.width - self.height;
     CGFloat titleH = self.height;
     return  CGRectMake(titleX, titleY, titleW, titleH);
+}
+
+
+
+
+#pragma mark - layoutSubviews
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    NSString *titleText = self.currentTitle;
+    CGSize size = [titleText sizeWithFont:YTitleFont withMaxSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
+    self.width = size.width + size.height + 20;
+    
 }
 
 

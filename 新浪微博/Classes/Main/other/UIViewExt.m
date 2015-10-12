@@ -52,6 +52,27 @@ CGRect CGRectMoveToCenter(CGRect rect, CGPoint center)
 	self.frame = newframe;
 }
 
+- (void)setMidX:(CGFloat)midX
+{
+    CGPoint center = self.center;
+    center.x = midX;
+    self.center = center;
+}
+- (CGFloat)midX
+{
+    return self.center.x;
+}
+- (void)setMidY:(CGFloat)midY
+{
+    CGPoint center = self.center;
+    center.y = midY;
+    self.center = center;
+}
+- (CGFloat)midY
+{
+    return self.center.y;
+}
+
 // Query other frame locations
 - (CGPoint) bottomRight
 {
@@ -189,4 +210,6 @@ CGRect CGRectMoveToCenter(CGRect rect, CGPoint center)
 	
 	self.frame = newframe;	
 }
+
+
 @end

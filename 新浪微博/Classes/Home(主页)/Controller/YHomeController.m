@@ -12,7 +12,9 @@
 #import "SecondController.h"
 #import "UIImage+Extension.h"
 #import "YTitleButton.h"
-@interface YHomeController ()
+#import "YPopMenu.h"
+@interface YHomeController () <YPopMenuDelegate>
+
 
 @end
 
@@ -24,13 +26,21 @@
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImageName:@"navigationbar_friendsearch" selectedImageName:@"navigationbar_friendsearch_highlighted" target:self action:@selector(friendSearch)];
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"navigationbar_pop" selectedImageName:@"navigationbar_pop_highlighted" target:self action:@selector(pop)];
 
+    
     YTitleButton *titleView = [YTitleButton  titleButton];
     [titleView setTitle:@"首页" forState:UIControlStateNormal];
-    UIImage *arrow = [UIImage imageWithImageName:@"navigationbar_arrow_down"];
-    [titleView setImage:arrow forState:UIControlStateNormal];
     
-    titleView.width = 100;
+    [titleView setImage:[UIImage imageWithImageName:@"navigationbar_arrow_down"] forState:UIControlStateNormal];
+    
+    //设置选中时的背景
+    UIImage *selectedBackground = [UIImage resizeImage:@"navigationbar_filter_background_highlighted"];
+    [titleView setBackgroundImage:selectedBackground forState:UIControlStateHighlighted];
+    
+    
     titleView.height = 35;
+    
+    //处理点击事件
+    [titleView addTarget:self action:@selector(titleViewAction:) forControlEvents:UIControlEventTouchUpInside];
     
     self.navigationItem.titleView = titleView;
     
@@ -38,21 +48,36 @@
 
 
 #pragma mark - 监听按钮动作
-- (void)friendSearch
-{
+- (void)friendSearch{
    
     FirstController *first = [[FirstController alloc] init];
     [self.navigationController pushViewController:first animated:YES];
 }
-- (void)pop
-{
+- (void)pop{
    
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)titleViewAction:(YTitleButton *)button{
+#warning bug --  同一张图片的内存地址不同
+    
+//    YLog(@"currentImage %@, downImage %@",button.currentImage,downImage);
+      [button setImage:[UIImage imageWithImageName:@"navigationbar_arrow_up"] forState:UIControlStateNormal];
+    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeContactAdd];
+    YPopMenu *menu = [YPopMenu popMenuWithContentView:btn];
+    menu.delegate = self;
+    
+    CGFloat menuY = 55;
+    CGFloat menuW = 100;
+    CGFloat menuH = 100;
+    CGFloat menuX = YScreenWidth/2 - menuW/2;
+    CGRect rect = CGRectMake(menuX, menuY, menuW, menuH);
+    [menu showInRect:rect];
+    
 }
 
+
+
+#pragma mark - tableView的数据源及代理方法
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 20;
@@ -80,6 +105,13 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+
+- (void)popMenuDidDismiss:(YPopMenu *)menu
+{
+    UIImage *downImage = [UIImage imageWithImageName:@"navigationbar_arrow_down"];
+    YTitleButton *button = (YTitleButton *)self.navigationItem.titleView;
+     [button setImage:downImage forState:UIControlStateNormal];
+}
 
 /*
 #pragma mark - Navigation

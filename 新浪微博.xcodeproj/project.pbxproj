@@ -19,6 +19,7 @@
 		C648140F1BC2A404005C83B8 /* UIBarButtonItem+YExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C648140E1BC2A404005C83B8 /* UIBarButtonItem+YExtension.m */; settings = {ASSET_TAGS = (); }; };
 		C64814121BC2AFC7005C83B8 /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = C64814111BC2AFC7005C83B8 /* UIViewExt.m */; settings = {ASSET_TAGS = (); }; };
 		C64EEF381BC670BB002E7166 /* YSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C64EEF371BC670BB002E7166 /* YSearchBar.m */; settings = {ASSET_TAGS = (); }; };
+		C66550CF1BCB6FBC004ED04F /* YPopMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = C66550CE1BCB6FBC004ED04F /* YPopMenu.m */; settings = {ASSET_TAGS = (); }; };
 		C66863641BBEC63600A4C619 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C66863631BBEC63600A4C619 /* Assets.xcassets */; };
 		C66863721BBEC63600A4C619 /* ____Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = C66863711BBEC63600A4C619 /* ____Tests.m */; };
 		C668637D1BBEC63600A4C619 /* ____UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C668637C1BBEC63600A4C619 /* ____UITests.m */; };
@@ -71,6 +72,8 @@
 		C64814111BC2AFC7005C83B8 /* UIViewExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewExt.m; sourceTree = "<group>"; };
 		C64EEF361BC670BB002E7166 /* YSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YSearchBar.h; path = "../../Home(主页)/View/YSearchBar.h"; sourceTree = "<group>"; };
 		C64EEF371BC670BB002E7166 /* YSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YSearchBar.m; path = "../../Home(主页)/View/YSearchBar.m"; sourceTree = "<group>"; };
+		C66550CD1BCB6FBC004ED04F /* YPopMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YPopMenu.h; sourceTree = "<group>"; };
+		C66550CE1BCB6FBC004ED04F /* YPopMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YPopMenu.m; sourceTree = "<group>"; };
 		C66863541BBEC63500A4C619 /* 新浪微博.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "新浪微博.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C66863631BBEC63600A4C619 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C66863681BBEC63600A4C619 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -188,6 +191,8 @@
 			children = (
 				C6A6A51C1BC67F67007AF464 /* YTitleButton.h */,
 				C6A6A51D1BC67F67007AF464 /* YTitleButton.m */,
+				C66550CD1BCB6FBC004ED04F /* YPopMenu.h */,
+				C66550CE1BCB6FBC004ED04F /* YPopMenu.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -537,6 +542,7 @@
 				C6DDE2F01BC3B30900D7D2BC /* NSString+YExtension.m in Sources */,
 				C648140F1BC2A404005C83B8 /* UIBarButtonItem+YExtension.m in Sources */,
 				C64EEF381BC670BB002E7166 /* YSearchBar.m in Sources */,
+				C66550CF1BCB6FBC004ED04F /* YPopMenu.m in Sources */,
 				C6DDE2EC1BC3B04400D7D2BC /* FirstController.m in Sources */,
 				C6DDE2E81BC3AECD00D7D2BC /* SecondController.m in Sources */,
 				C612604B1BC28E03000EFFA0 /* YHomeController.m in Sources */,
