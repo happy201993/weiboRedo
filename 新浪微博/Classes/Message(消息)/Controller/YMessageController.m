@@ -7,7 +7,8 @@
 //
 
 #import "YMessageController.h"
-
+#import "YComposeViewController.h"
+#import "YNavigationController.h"
 @interface YMessageController ()
 
 @end
@@ -26,6 +27,11 @@
 - (void)sendMessage
 {
     YLog(@"send Message");
+    YComposeViewController *vc = [[YComposeViewController alloc] init];
+    
+    YNavigationController *navi = [[YNavigationController alloc] initWithRootViewController:vc];
+    
+    [self presentViewController:navi animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -67,8 +67,8 @@
     menu.delegate = self;
     
     CGFloat menuY = 55;
-    CGFloat menuW = 100;
-    CGFloat menuH = 100;
+    CGFloat menuW = 200;
+    CGFloat menuH = 300;
     CGFloat menuX = YScreenWidth/2 - menuW/2;
     CGRect rect = CGRectMake(menuX, menuY, menuW, menuH);
     [menu showInRect:rect];

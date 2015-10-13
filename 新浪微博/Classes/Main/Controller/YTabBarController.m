@@ -13,20 +13,58 @@
 #import "YDiscoverController.h"
 #import "YProfileController.h"
 #import "UIImage+Extension.h"
-@interface YTabBarController () <UITabBarControllerDelegate>
+#import "YTabBar.h"
+#import "YComposeViewController.h"
+@interface YTabBarController () <UITabBarControllerDelegate,YTabBarDelegate>
 
 @end
 
 @implementation YTabBarController
 
++ (void)initialize
+{
+    [self configureTabBarItem];
+}
+
+/**
+ *  调整TabBarItem的外观
+ */
++ (void)configureTabBarItem
+{
+    UITabBarItem *appearence = [UITabBarItem appearance];
+    
+    NSMutableDictionary *normalAttribute = [NSMutableDictionary dictionary];
+    normalAttribute[NSForegroundColorAttributeName] = [UIColor lightGrayColor];
+    normalAttribute[NSFontAttributeName] = [UIFont systemFontOfSize:10];
+    [appearence setTitleTextAttributes:normalAttribute forState:UIControlStateNormal];
+    NSMutableDictionary *selectedAttribute = [NSMutableDictionary dictionary];
+    selectedAttribute[NSForegroundColorAttributeName] = [UIColor orangeColor];
+    [appearence setTitleTextAttributes:selectedAttribute forState:UIControlStateSelected];
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    YTabBar *tabBar = [[YTabBar alloc] init];
+    tabBar.mDelegate = self;
+    [self setValue:tabBar forKey:@"tabBar"];
+    
     
     [self configureChildViewControllers];
+    
 }
 
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+//    YLog(@"%@",self.tabBar.subviews);
+}
+
+/**
+ *  添加子控制器
+ */
 - (void)configureChildViewControllers{
     YHomeController *home = [[YHomeController alloc] init];
     [self addChildVC:home title:@"主页" image:@"tabbar_home" selectedImageName:@"tabbar_home_selected"];
@@ -42,8 +80,7 @@
     YProfileController *profile = [[YProfileController alloc] init];
     [self addChildVC:profile title:@"我" image:@"tabbar_profile" selectedImageName:@"tabbar_profile_selected"];
     
-//    self.tabBar.backgroundImage = [UIImage imageWithImageName:@"tabbar_background"];
-    self.delegate = self;
+
 }
 
 
@@ -59,50 +96,48 @@
     }
     childVc.tabBarItem = [[UITabBarItem alloc] initWithTitle:title image:[UIImage imageWithImageName:imageName] selectedImage:selectedImage];
     
+    
     YNavigationController *navi = [[YNavigationController alloc] initWithRootViewController:childVc];
     [self addChildViewController:navi];
 }
 
 
-- (void)viewDidAppear:(BOOL)animated
+
+
+//- (void)changeTabBarLabelTextColor
+//{
+//    NSUInteger i = 0;
+//    for (UIView *buttons in self.tabBar.subviews) {
+//        if (![buttons isKindOfClass:NSClassFromString(@"UITabBarButton")]) continue;
+//        
+//        for (UIView *btnSubs in buttons.subviews) {
+//            UILabel *label = nil;
+//            if ([btnSubs isKindOfClass:[UILabel class]]) {
+//                label = (UILabel *)btnSubs;
+//            }
+//            if (i == self.selectedIndex) { //选中的那个按钮
+//                label.textColor = [UIColor orangeColor];
+//            }
+//            else{ //不是选中那个按钮
+//                label.textColor = [UIColor lightGrayColor];
+//            }
+//        }
+//        
+//        i++;
+//    }
+//}
+
+
+#pragma mark - 自定义TabBar代理方法
+- (void)tabBarDidSelectedPlusButton:(YTabBar *)tabBar
 {
-    [super viewDidAppear:animated];
+    YComposeViewController *vc = [[YComposeViewController alloc] init];
     
-}
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self changeTabBarLabelTextColor];
+    YNavigationController *navi = [[YNavigationController alloc] initWithRootViewController:vc];
+    
+    [self presentViewController:navi animated:YES completion:nil];
 }
 
-
-- (void)changeTabBarLabelTextColor
-{
-    NSUInteger i = 0;
-    for (UIView *buttons in self.tabBar.subviews) {
-        if (![buttons isKindOfClass:NSClassFromString(@"UITabBarButton")]) continue;
-        
-        for (UIView *btnSubs in buttons.subviews) {
-            UILabel *label = nil;
-            if ([btnSubs isKindOfClass:[UILabel class]]) {
-                label = (UILabel *)btnSubs;
-            }
-            if (i == self.selectedIndex) { //选中的那个按钮
-                label.textColor = [UIColor orangeColor];
-            }
-            else{ //不是选中那个按钮
-                label.textColor = [UIColor lightGrayColor];
-            }
-        }
-        
-        i++;
-    }
-}
-
--  (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
-{
-    [self changeTabBarLabelTextColor];
-}
 
 
 

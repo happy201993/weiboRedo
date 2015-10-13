@@ -15,6 +15,8 @@
 		C61260511BC28E31000EFFA0 /* YDiscoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = C61260501BC28E31000EFFA0 /* YDiscoverController.m */; settings = {ASSET_TAGS = (); }; };
 		C61260541BC28E3E000EFFA0 /* YProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = C61260531BC28E3E000EFFA0 /* YProfileController.m */; settings = {ASSET_TAGS = (); }; };
 		C61260591BC296F9000EFFA0 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C61260581BC296F9000EFFA0 /* UIImage+Extension.m */; settings = {ASSET_TAGS = (); }; };
+		C61421811BCC013F00114B86 /* YTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C61421801BCC013F00114B86 /* YTabBar.m */; settings = {ASSET_TAGS = (); }; };
+		C61421881BCC0E2000114B86 /* YComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C61421871BCC0E2000114B86 /* YComposeViewController.m */; settings = {ASSET_TAGS = (); }; };
 		C648140C1BC2A24C005C83B8 /* YNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C648140B1BC2A24C005C83B8 /* YNavigationController.m */; settings = {ASSET_TAGS = (); }; };
 		C648140F1BC2A404005C83B8 /* UIBarButtonItem+YExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C648140E1BC2A404005C83B8 /* UIBarButtonItem+YExtension.m */; settings = {ASSET_TAGS = (); }; };
 		C64814121BC2AFC7005C83B8 /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = C64814111BC2AFC7005C83B8 /* UIViewExt.m */; settings = {ASSET_TAGS = (); }; };
@@ -64,6 +66,10 @@
 		C61260551BC2949F000EFFA0 /* YWeiBoPrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWeiBoPrefixHeader.pch; sourceTree = "<group>"; };
 		C61260571BC296F9000EFFA0 /* UIImage+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
 		C61260581BC296F9000EFFA0 /* UIImage+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
+		C614217F1BCC013F00114B86 /* YTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTabBar.h; sourceTree = "<group>"; };
+		C61421801BCC013F00114B86 /* YTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTabBar.m; sourceTree = "<group>"; };
+		C61421861BCC0E2000114B86 /* YComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YComposeViewController.h; sourceTree = "<group>"; };
+		C61421871BCC0E2000114B86 /* YComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YComposeViewController.m; sourceTree = "<group>"; };
 		C648140A1BC2A24C005C83B8 /* YNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNavigationController.h; sourceTree = "<group>"; };
 		C648140B1BC2A24C005C83B8 /* YNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNavigationController.m; sourceTree = "<group>"; };
 		C648140D1BC2A404005C83B8 /* UIBarButtonItem+YExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+YExtension.h"; sourceTree = "<group>"; };
@@ -128,6 +134,7 @@
 				C61260361BC28D1E000EFFA0 /* Message(消息) */,
 				C612602A1BC28D1E000EFFA0 /* Discover(发现) */,
 				C61260321BC28D1E000EFFA0 /* Profile(我) */,
+				C61421821BCC0E0B00114B86 /* Compose(发微博) */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -303,6 +310,8 @@
 		C612603D1BC28D1E000EFFA0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C614217F1BCC013F00114B86 /* YTabBar.h */,
+				C61421801BCC013F00114B86 /* YTabBar.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -331,6 +340,39 @@
 				C648140E1BC2A404005C83B8 /* UIBarButtonItem+YExtension.m */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		C61421821BCC0E0B00114B86 /* Compose(发微博) */ = {
+			isa = PBXGroup;
+			children = (
+				C61421831BCC0E0B00114B86 /* Controller */,
+				C61421841BCC0E0B00114B86 /* View */,
+				C61421851BCC0E0B00114B86 /* Model */,
+			);
+			path = "Compose(发微博)";
+			sourceTree = "<group>";
+		};
+		C61421831BCC0E0B00114B86 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C61421861BCC0E2000114B86 /* YComposeViewController.h */,
+				C61421871BCC0E2000114B86 /* YComposeViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C61421841BCC0E0B00114B86 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C61421851BCC0E0B00114B86 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		C668634B1BBEC63500A4C619 = {
@@ -536,6 +578,8 @@
 				C61260541BC28E3E000EFFA0 /* YProfileController.m in Sources */,
 				C64814121BC2AFC7005C83B8 /* UIViewExt.m in Sources */,
 				C612604E1BC28E1A000EFFA0 /* YMessageController.m in Sources */,
+				C61421811BCC013F00114B86 /* YTabBar.m in Sources */,
+				C61421881BCC0E2000114B86 /* YComposeViewController.m in Sources */,
 				C61260421BC28D1E000EFFA0 /* AppDelegate.m in Sources */,
 				C648140C1BC2A24C005C83B8 /* YNavigationController.m in Sources */,
 				C61260471BC28D8B000EFFA0 /* YTabBarController.m in Sources */,

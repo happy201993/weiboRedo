@@ -20,9 +20,8 @@
 + (void)initialize
 {
     [self configureNavigationItem];
-    
-   
 }
+
 
 
 /**
