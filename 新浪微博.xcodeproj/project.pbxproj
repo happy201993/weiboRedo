@@ -15,6 +15,7 @@
 		C61260511BC28E31000EFFA0 /* YDiscoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = C61260501BC28E31000EFFA0 /* YDiscoverController.m */; settings = {ASSET_TAGS = (); }; };
 		C61260541BC28E3E000EFFA0 /* YProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = C61260531BC28E3E000EFFA0 /* YProfileController.m */; settings = {ASSET_TAGS = (); }; };
 		C61260591BC296F9000EFFA0 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C61260581BC296F9000EFFA0 /* UIImage+Extension.m */; settings = {ASSET_TAGS = (); }; };
+		C612D72B1BCC96E600490947 /* YNewfeatureController.m in Sources */ = {isa = PBXBuildFile; fileRef = C612D72A1BCC96E600490947 /* YNewfeatureController.m */; settings = {ASSET_TAGS = (); }; };
 		C61421811BCC013F00114B86 /* YTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C61421801BCC013F00114B86 /* YTabBar.m */; settings = {ASSET_TAGS = (); }; };
 		C61421881BCC0E2000114B86 /* YComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C61421871BCC0E2000114B86 /* YComposeViewController.m */; settings = {ASSET_TAGS = (); }; };
 		C648140C1BC2A24C005C83B8 /* YNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C648140B1BC2A24C005C83B8 /* YNavigationController.m */; settings = {ASSET_TAGS = (); }; };
@@ -66,6 +67,8 @@
 		C61260551BC2949F000EFFA0 /* YWeiBoPrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWeiBoPrefixHeader.pch; sourceTree = "<group>"; };
 		C61260571BC296F9000EFFA0 /* UIImage+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
 		C61260581BC296F9000EFFA0 /* UIImage+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
+		C612D7291BCC96E600490947 /* YNewfeatureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNewfeatureController.h; sourceTree = "<group>"; };
+		C612D72A1BCC96E600490947 /* YNewfeatureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNewfeatureController.m; sourceTree = "<group>"; };
 		C614217F1BCC013F00114B86 /* YTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTabBar.h; sourceTree = "<group>"; };
 		C61421801BCC013F00114B86 /* YTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTabBar.m; sourceTree = "<group>"; };
 		C61421861BCC0E2000114B86 /* YComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YComposeViewController.h; sourceTree = "<group>"; };
@@ -129,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				C6DDE2E21BC3AE9A00D7D2BC /* Temp */,
+				C612D7251BCC969B00490947 /* Newfeature(新特性) */,
 				C612603A1BC28D1E000EFFA0 /* Main */,
 				C612602E1BC28D1E000EFFA0 /* Home(主页) */,
 				C61260361BC28D1E000EFFA0 /* Message(消息) */,
@@ -340,6 +344,39 @@
 				C648140E1BC2A404005C83B8 /* UIBarButtonItem+YExtension.m */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		C612D7251BCC969B00490947 /* Newfeature(新特性) */ = {
+			isa = PBXGroup;
+			children = (
+				C612D7261BCC969B00490947 /* Controller */,
+				C612D7271BCC969B00490947 /* View */,
+				C612D7281BCC969B00490947 /* Model */,
+			);
+			path = "Newfeature(新特性)";
+			sourceTree = "<group>";
+		};
+		C612D7261BCC969B00490947 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C612D7291BCC96E600490947 /* YNewfeatureController.h */,
+				C612D72A1BCC96E600490947 /* YNewfeatureController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C612D7271BCC969B00490947 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C612D7281BCC969B00490947 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		C61421821BCC0E0B00114B86 /* Compose(发微博) */ = {
@@ -590,6 +627,7 @@
 				C6DDE2EC1BC3B04400D7D2BC /* FirstController.m in Sources */,
 				C6DDE2E81BC3AECD00D7D2BC /* SecondController.m in Sources */,
 				C612604B1BC28E03000EFFA0 /* YHomeController.m in Sources */,
+				C612D72B1BCC96E600490947 /* YNewfeatureController.m in Sources */,
 				C61260431BC28D1E000EFFA0 /* main.m in Sources */,
 				C61260591BC296F9000EFFA0 /* UIImage+Extension.m in Sources */,
 			);

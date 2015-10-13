@@ -8,6 +8,9 @@
 
 #import "AppDelegate.h"
 #import "YTabBarController.h"
+#import "YNewfeatureController.h"
+
+#define kVersionKey @"CFBundleVersion"
 @interface AppDelegate ()
 
 @end
@@ -22,15 +25,56 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
     //02 创建根视图控制器
-    YTabBarController *tabbarVc = [[YTabBarController alloc] init];
+    UIViewController *rootVc = nil;
+    
+    NSString *currentVersion = [self currentVersion];
+    NSString *originVersion = [self originVersion];
+    if (![currentVersion isEqualToString:originVersion]) {
+        [self writeCurrentVersionToDisk:currentVersion];
+        rootVc = [[YNewfeatureController alloc] init];
+    }
+    else{
+        rootVc = [[YTabBarController alloc] init];
+    }
+    rootVc = [[YNewfeatureController alloc] init];
+    
     //03 设置窗口根视图控制器
-    self.window.rootViewController = tabbarVc;
+    self.window.rootViewController = rootVc;
     
     //04 设置为主窗口并可见
     [self.window makeKeyAndVisible];
     
     
+    
     return YES;
+}
+/**
+ *  返回当前版本号
+ */
+- (NSString *)currentVersion
+{
+    NSDictionary *info = [NSBundle mainBundle].infoDictionary;
+    return info[kVersionKey];
+}
+
+/**
+ *  把当前版本号写入沙盒
+ *
+ *  @param currentVersion 当前版本号
+ */
+- (void)writeCurrentVersionToDisk:(NSString *)currentVersion
+{
+    NSUserDefaults *mDefaults = [NSUserDefaults standardUserDefaults];
+    [mDefaults setObject:currentVersion forKey:kVersionKey];
+    [mDefaults synchronize];
+}
+/**
+ *  原来版本的版本号
+ */
+- (NSString *)originVersion
+{
+    NSUserDefaults *mDefaults = [NSUserDefaults standardUserDefaults];
+    return [mDefaults stringForKey:kVersionKey];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
