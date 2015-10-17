@@ -9,9 +9,8 @@
 #import "AppDelegate.h"
 #import "YTabBarController.h"
 #import "YNewfeatureController.h"
-
-#define kVersionKey @"CFBundleVersion"
-@interface AppDelegate ()
+#import "YOAuthViewController.h"
+@interface AppDelegate () <YOAuthViewControllerDelegate>
 
 @end
 
@@ -21,60 +20,50 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    YLog(@"%@",NSHomeDirectory());
+    
     //01 创建窗口
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
     //02 创建根视图控制器
     UIViewController *rootVc = nil;
-    
-    NSString *currentVersion = [self currentVersion];
-    NSString *originVersion = [self originVersion];
+    //获取账户信息
+    YAccount *accountInfo = [YAccountVersionTool account];
+    if (accountInfo == nil) {
+        YOAuthViewController *vc  = [[YOAuthViewController alloc] init];
+        vc.delegate = self;
+        rootVc = vc;
+    }
+    else{
+        rootVc = [self rootViewControllerWithVersion];
+    }
+    //03 设置窗口根视图控制器
+    self.window.rootViewController = rootVc;
+    //04 设置为主窗口并可见
+    [self.window makeKeyAndVisible];
+    return YES;
+}
+
+
+/**
+ *  判断版本具体逻辑
+ *
+ *  @return 返回正确地根控制器
+ */
+- (UIViewController *)rootViewControllerWithVersion
+{
+     UIViewController *rootVc = nil;
+    //检查版本
+    NSString *currentVersion = [YAccountVersionTool currentVersion];
+    NSString *originVersion = [YAccountVersionTool originVersion];
     if (![currentVersion isEqualToString:originVersion]) {
-        [self writeCurrentVersionToDisk:currentVersion];
+        [YAccountVersionTool writeCurrentVersionToDisk:currentVersion];
         rootVc = [[YNewfeatureController alloc] init];
     }
     else{
         rootVc = [[YTabBarController alloc] init];
     }
-    rootVc = [[YNewfeatureController alloc] init];
-    
-    //03 设置窗口根视图控制器
-    self.window.rootViewController = rootVc;
-    
-    //04 设置为主窗口并可见
-    [self.window makeKeyAndVisible];
-    
-    
-    
-    return YES;
-}
-/**
- *  返回当前版本号
- */
-- (NSString *)currentVersion
-{
-    NSDictionary *info = [NSBundle mainBundle].infoDictionary;
-    return info[kVersionKey];
-}
-
-/**
- *  把当前版本号写入沙盒
- *
- *  @param currentVersion 当前版本号
- */
-- (void)writeCurrentVersionToDisk:(NSString *)currentVersion
-{
-    NSUserDefaults *mDefaults = [NSUserDefaults standardUserDefaults];
-    [mDefaults setObject:currentVersion forKey:kVersionKey];
-    [mDefaults synchronize];
-}
-/**
- *  原来版本的版本号
- */
-- (NSString *)originVersion
-{
-    NSUserDefaults *mDefaults = [NSUserDefaults standardUserDefaults];
-    return [mDefaults stringForKey:kVersionKey];
+    return rootVc;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -97,6 +86,30 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)applicatio
+{
+    SDWebImageManager *mgr = [SDWebImageManager sharedManager];
+    //取消所有操作
+    [mgr cancelAll];
+    //清除内存
+    [mgr.imageCache clearMemory];
+}
+
+#pragma mark - 登录后的代理方法
+- (void)OAuthViewControllerDidLoginWithTokenInfo:(NSDictionary *)info
+{
+    YAccount *account = [YAccount accountWithDictionary:info];
+    
+    [YAccountVersionTool writeAccountToDisk:account];
+    UIViewController *rootVc = [self rootViewControllerWithVersion];
+    self.window.rootViewController = rootVc;
+}
+
+- (void)OAuthViewControllerDidLogFailWithError:(NSError *)error
+{
+    YLog(@"error ----- %@",error);
 }
 
 @end

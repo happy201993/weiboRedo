@@ -13,8 +13,11 @@
 #import "UIImage+Extension.h"
 #import "YTitleButton.h"
 #import "YPopMenu.h"
+
+
 @interface YHomeController () <YPopMenuDelegate>
 
+@property (nonatomic,strong) NSMutableArray *statuses;
 
 @end
 
@@ -23,9 +26,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self configureNaviBar];
+    [self loadData];
+    
+}
+
+
+
+/**
+ *  配置导航栏
+ */
+- (void)configureNaviBar{
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImageName:@"navigationbar_friendsearch" selectedImageName:@"navigationbar_friendsearch_highlighted" target:self action:@selector(friendSearch)];
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"navigationbar_pop" selectedImageName:@"navigationbar_pop_highlighted" target:self action:@selector(pop)];
-
     
     YTitleButton *titleView = [YTitleButton  titleButton];
     [titleView setTitle:@"首页" forState:UIControlStateNormal];
@@ -36,14 +49,33 @@
     UIImage *selectedBackground = [UIImage resizeImage:@"navigationbar_filter_background_highlighted"];
     [titleView setBackgroundImage:selectedBackground forState:UIControlStateHighlighted];
     
-    
     titleView.height = 35;
     
     //处理点击事件
     [titleView addTarget:self action:@selector(titleViewAction:) forControlEvents:UIControlEventTouchUpInside];
     
     self.navigationItem.titleView = titleView;
-    
+}
+
+
+
+/**
+ *  获取数据
+ */
+- (void)loadData{
+    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"access_token"] = [YAccountVersionTool account].access_token;
+    [mgr GET:kSinaWeiboStatusDomain parameters:params success:^(AFHTTPRequestOperation * _Nonnull operation, NSDictionary  *responseObject) {
+        YLog(@"success -- %@",responseObject);
+        NSArray *status = responseObject[@"statuses"];
+        NSArray *array = [YStatuse objectArrayWithKeyValuesArray:status];
+        self.statuses = [NSMutableArray arrayWithArray:array];
+        [self.tableView reloadData];
+        
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        YLog(@"error -- %@",error);
+    }];
 }
 
 
@@ -58,7 +90,6 @@
 }
 - (void)titleViewAction:(YTitleButton *)button{
 #warning bug --  同一张图片的内存地址不同
-    
 //    YLog(@"currentImage %@, downImage %@",button.currentImage,downImage);
       [button setImage:[UIImage imageWithImageName:@"navigationbar_arrow_up"] forState:UIControlStateNormal];
     
@@ -80,7 +111,7 @@
 #pragma mark - tableView的数据源及代理方法
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20;
+    return self.statuses.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -89,10 +120,15 @@
     static NSString *ID = @"cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
     }
+    YStatuse *statuse = self.statuses[indexPath.row];
+    
     //2 设置模型
-    cell.textLabel.text = [NSString stringWithFormat:@"YHomeController --- %li",indexPath.row];
+    cell.textLabel.text = statuse.text;
+    cell.detailTextLabel.text = statuse.user.screen_name;
+    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:statuse.user.profile_image_url] placeholderImage:[UIImage imageWithImageName:@"avatar_default_default"]];
+    
     return cell;
 }
 

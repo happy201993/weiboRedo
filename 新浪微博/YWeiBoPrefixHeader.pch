@@ -13,6 +13,13 @@
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 #import "UIViewExt.h"
 #import "UIImage+Extension.h"
+#import "AFNetworking.h"
+#import "MJExtension.h"
+#import "YAccountVersionTool.h"
+#import "YAccount.h"
+#import "YStatuse.h"
+#import "YUser.h"
+#import "UIImageView+WebCache.h"
 
 #define YScreenWidth [UIScreen mainScreen].bounds.size.width
 #define YScreenHeight [UIScreen mainScreen].bounds.size.height
@@ -27,6 +34,25 @@
 #else 
     #define YLog(...)
 #endif
+
+/**
+ *  微博API相关
+ */
+#define YOAthoInfoPath @"account.data"
+
+#define kSinaWeiboSDKAPIDomain             @"https://open.weibo.cn/2/"
+#define kSinaWeiboSDKOAuth2APIDomain       @"https://open.weibo.cn/2/oauth2/"
+#define kSinaWeiboWebAuthURL               @"https://open.weibo.cn/2/oauth2/authorize"
+#define kSinaWeiboWebAccessTokenURL        @"https://open.weibo.cn/2/oauth2/access_token"
+#define kSinaWeiboStatusDomain @"https://api.weibo.com/2/statuses/home_timeline.json"
+
+#define kAppKey             @"3064080673"
+#define kAppSecret          @"1b7d2ce8f0d30467f083b8aa98a06270"
+#define kAppRedirectURI     @"http://www.baidu.com"
+
+#define kAppKeyName @"client_id"
+#define kAppSecretName @"client_secret"
+#define kAppRedirectURIName @"redirect_uri"
 
 //首页标题文字的字体
 #define YTitleFont [UIFont boldSystemFontOfSize:18]
