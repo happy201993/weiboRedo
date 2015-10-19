@@ -16,7 +16,7 @@
 #import "YPrompt.h"
 #import "YRefreshFooter.h"
 #import "YStatusesTool.h"
-#import "YUserTool.h"
+#import "YUserInfoTool.h"
 
 
 @interface YHomeController () <YPopMenuDelegate>
@@ -130,8 +130,7 @@
 
 #pragma mark - 加载数据
 - (void)loadNewData{
-    YStatusParams *params = [[YStatusParams alloc] init];
-    params.access_token = [YAccountVersionTool account].access_token;
+    YStatusParams *params = [YStatusParams params];
     params.since_id = [[self.statuses firstObject] ID];
     [YStatusesTool loadWeiboStatusWithParams:params success:^(YStatusResult *result) {
         [self.refreshControl endRefreshing];
@@ -152,8 +151,7 @@
 }
 
 - (void)loadMoreData{
-    YStatusParams *params = [[YStatusParams alloc] init];
-    params.access_token = [YAccountVersionTool account].access_token;
+    YStatusParams *params = [YStatusParams params];
     NSInteger maxId = [[[self.statuses lastObject] ID] integerValue] - 1;
     params.max_id = [NSNumber numberWithInteger:maxId];
     [YStatusesTool loadWeiboStatusWithParams:params success:^(YStatusResult *result) {
@@ -183,10 +181,9 @@
 //    参数uid与screen_name二者必选其一，且只能选其一；
 //    接口升级后，对未授权本应用的uid，将无法获取其个人简介、认证原因、粉丝数、关注数、微博数及最近一条微博内容。
     
-    YUserParams *params = [[YUserParams alloc] init];
-    params.access_token = [YAccountVersionTool account].access_token;
+    YUserParams *params = [YUserParams params];
     params.uid = [YAccountVersionTool account].uid;
-    [YUserTool loadUserInfoWithParams:params success:^(YUser *user) {
+    [YUserInfoTool loadUserInfoWithParams:params success:^(YUserResult *user) {
         YAccount *account = [YAccountVersionTool account];
         account.screen_name = user.screen_name;
         //将最新的昵称保存到沙盒

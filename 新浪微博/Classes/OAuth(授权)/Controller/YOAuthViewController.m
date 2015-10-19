@@ -56,28 +56,22 @@
 - (void)accessTokenWithCode:(NSString *)code
 {
     //获取请求管理对象
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[kAppKeyName] = kAppKey;
-    params[kAppSecretName] = kAppSecret;
-    params[@"grant_type"] = @"authorization_code";
-    params[@"code"] = code;
-    params[kAppRedirectURIName] = kAppRedirectURI;
-    [mgr POST:kSinaWeiboWebAccessTokenURL parameters:params success:^(AFHTTPRequestOperation * _Nonnull operation, NSDictionary *responseObject) {
+    YAccountParams *params = [[YAccountParams alloc] init];
+    params.client_id = kAppKey;
+    params.client_secret = kAppSecret;
+    params.grant_type = @"authorization_code";
+    params.code = code;
+    params.redirect_uri = kAppRedirectURI;
+    [YAccountVersionTool accessTokenWithParams:params success:^(YAccount *account) {
         [MBProgressHUD hideHUD];
-        YLog(@"windows ---- %@\n keyWindow ---- %@",[UIApplication sharedApplication].windows,[UIApplication sharedApplication].keyWindow);
-        YLog(@"success ---- %@",responseObject);
         if ([self.delegate respondsToSelector:@selector(OAuthViewControllerDidLoginWithTokenInfo:)]) {
-            [self.delegate OAuthViewControllerDidLoginWithTokenInfo:responseObject];
+            [self.delegate OAuthViewControllerDidLoginWithTokenInfo:account];
         }
-        
-    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
-       
+    } failure:^(NSError *error) {
         [MBProgressHUD hideHUD];
         if ([self.delegate respondsToSelector:@selector(OAuthViewControllerDidLogFailWithError:)]) {
             [self.delegate OAuthViewControllerDidLogFailWithError:error];
         }
-        
     }];
 }
 

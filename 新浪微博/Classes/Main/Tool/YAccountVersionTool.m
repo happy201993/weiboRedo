@@ -7,7 +7,7 @@
 //
 
 #import "YAccountVersionTool.h"
-#import "YAccount.h"
+
 #define kVersionKey @"CFBundleVersion"
 
 
@@ -72,6 +72,21 @@
         account = nil;
     }
     return account;
+}
+
++ (void)accessTokenWithParams:(YAccountParams *)params success:(void (^)(YAccount *account))success failure:(void (^)(NSError *error))failure
+{
+    [YHttpTool post:kSinaWeiboWebAccessTokenURL params:params.keyValues success:^(NSDictionary *responseObj){
+        YAccount *mResult = [YAccount objectWithKeyValues:responseObj];
+        if(success)
+        {
+            success(mResult);
+        }
+    } failure:^(NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
 }
 
 @end

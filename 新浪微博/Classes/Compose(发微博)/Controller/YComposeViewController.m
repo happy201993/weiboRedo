@@ -10,6 +10,8 @@
 #import "YImagePicker.h"
 #import "YTextView.h"
 #import "YComposeToolBar.h"
+#import "YStatusesTool.h"
+
 @interface YComposeViewController () <YComposeToolBarDelegate,UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UINavigationControllerDelegate>
 @property (nonatomic,weak) YTextView *textView;
 @property (nonatomic,weak) YComposeToolBar *toolBar;
@@ -224,39 +226,34 @@
 #pragma mark - 发表微博的封装
 - (void)publishWeiboWithText:(NSString *)text withImage:(UIImage *)image
 {
-    
-    NSString *token = [YAccountVersionTool account].access_token;
-    
-    NSDictionary *params = @{
-                             WeiboTextKey:text,
-                             WeiboTokenKey:token
-                             };
+    YNewStatusParams *params = [YNewStatusParams params];
+    params.status = text;
     __weak __typeof(self)weakSelf = self;
     if (image == nil) {
         //发文字
-        [YHttpTool post:kSinaWeiboPublishStatusWithoutImageDomain params:params success:^(id responseObj) {
+        [YStatusesTool pulishWeiboWithParams:params success:^(YNewStatusResult *result) {
             [MBProgressHUD showSuccess:@"发送成功!"];
             [weakSelf cancel];
         } failure:^(NSError *error) {
-            [MBProgressHUD showError:@"发送失败!"];
+             [MBProgressHUD showError:@"发送失败!"];
         }];
     }
     else{
         //发图片
         NSData *imageData = UIImageJPEGRepresentation(image, 1);
-        [YHttpTool post:kSinaWeiboPublishStatusWithImageDomain params:params constructingBodyWithBlock:^(YFileFormData *formData) {
-            formData.name = @"pic";
-            formData.data = imageData;
-            formData.fileName = @"yimage.jpg";
-            formData.mimeType = @"image/jpeg";
-        } success:^(id responseObj) {
-            [MBProgressHUD hideHUD];
-            [MBProgressHUD showSuccess:@"发送成功!"];
-            [weakSelf cancel];
-        } failure:^(NSError *error) {
-            [MBProgressHUD hideHUD];
-            [MBProgressHUD showError:@"发送失败!"];
-        }];
+//        [YHttpTool post:kSinaWeiboPublishStatusWithImageDomain params:params constructingBodyWithBlock:^(YFileFormData *formData) {
+//            formData.name = @"pic";
+//            formData.data = imageData;
+//            formData.fileName = @"yimage.jpg";
+//            formData.mimeType = @"image/jpeg";
+//        } success:^(id responseObj) {
+//            [MBProgressHUD hideHUD];
+//            [MBProgressHUD showSuccess:@"发送成功!"];
+//            [weakSelf cancel];
+//        } failure:^(NSError *error) {
+//            [MBProgressHUD hideHUD];
+//            [MBProgressHUD showError:@"发送失败!"];
+//        }];
     }
     
     

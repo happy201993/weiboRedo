@@ -11,7 +11,7 @@
 @protocol YOAuthViewControllerDelegate <NSObject>
 
 @optional
-- (void)OAuthViewControllerDidLoginWithTokenInfo:(NSDictionary *)info;
+- (void)OAuthViewControllerDidLoginWithTokenInfo:(YAccount *)account;
 - (void)OAuthViewControllerDidLogFailWithError:(NSError *)error;
 @end
 

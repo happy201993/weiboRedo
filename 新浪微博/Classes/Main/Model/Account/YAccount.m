@@ -10,20 +10,25 @@
 
 @implementation YAccount
 
-+ (instancetype)accountWithDictionary:(NSDictionary *)dict
+
+/**
+ *  重写MJExtension的相关方法
+ *
+ *  @param keyValues 账号字典
+ *
+ *  @return 账号对象
+ */
++ (instancetype)objectWithKeyValues:(id)keyValues
 {
-    YAccount *account = [[YAccount alloc] init];
-    [account setValuesForKeysWithDictionary:dict];
+    YAccount *account = [super objectWithKeyValues:keyValues];
     //计算过期时间
     NSDate *date = [NSDate dateWithTimeIntervalSinceNow:account.expires_in.doubleValue];
     account.expires_date = date;
     return account;
+
 }
 
-- (void)setValue:(id)value forUndefinedKey:(NSString *)key
-{
-    
-}
+
 
 - (instancetype)initWithCoder:(NSCoder *)coder
 {

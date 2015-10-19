@@ -27,4 +27,20 @@
     }];
 }
 
++ (void)pulishWeiboWithParams:(YNewStatusParams *)params success:(void (^)(YNewStatusResult *result))success failure:(void (^)(NSError *error))failure
+{
+    [YHttpTool post:kSinaWeiboPublishStatusWithoutImageDomain params:params.keyValues success:^(NSDictionary *responseObj){
+        YNewStatusResult *mResult = [YNewStatusResult objectWithKeyValues:responseObj];
+        if(success)
+        {
+            success(mResult);
+        }
+        
+    } failure:^(NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
 @end

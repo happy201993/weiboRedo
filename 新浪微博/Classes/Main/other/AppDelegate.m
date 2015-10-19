@@ -123,11 +123,8 @@
 }
 
 #pragma mark - 登录后的代理方法
-- (void)OAuthViewControllerDidLoginWithTokenInfo:(NSDictionary *)info
+- (void)OAuthViewControllerDidLoginWithTokenInfo:(YAccount *)account
 {
-    YAccount *account = [YAccount accountWithDictionary:info];
-    
-    [YAccountVersionTool writeAccountToDisk:account];
     UIViewController *rootVc = [self rootViewControllerWithVersion];
     self.window.rootViewController = rootVc;
 }

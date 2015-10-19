@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-@class YAccount;
+#import "YAccountParams.h"
+#import "YAccount.h"
 @interface YAccountVersionTool : NSObject
 
 + (NSString *)currentVersion;
@@ -16,5 +17,14 @@
 
 + (void)writeAccountToDisk:(YAccount *)accountInfo;
 + (YAccount *)account;
+
+/**
+ *  获取AccessToken
+ *
+ *  @param params  请求参数
+ *  @param success 返回微博数据的block
+ *  @param failure 返回错误信息的block
+ */
++ (void)accessTokenWithParams:(YAccountParams *)params success:(void (^)(YAccount *account))success failure:(void (^)(NSError *error))failure;
 
 @end

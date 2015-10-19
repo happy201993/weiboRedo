@@ -35,6 +35,5 @@
 @property (nonatomic,copy) NSString *screen_name;
 
 
-+ (instancetype)accountWithDictionary:(NSDictionary *)dict;
 
 @end

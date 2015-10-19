@@ -6,15 +6,15 @@
 //  Copyright © 2015年 YCompany. All rights reserved.
 //
 
-#import "YUserTool.h"
+#import "YUserInfoTool.h"
 #import "YHttpTool.h"
-@implementation YUserTool
+@implementation YUserInfoTool
 
-+ (void)loadUserInfoWithParams:(YUserParams *)params success:(void(^)(YUser *user))success failure:(void (^)(NSError *error))failure
++ (void)loadUserInfoWithParams:(YUserParams *)params success:(void(^)(YUserResult *result))success failure:(void (^)(NSError *error))failure
 {
 
     [YHttpTool get:kSinaWeiboUserInfoDomain params:params.keyValues success:^(NSDictionary *responseObject) {
-        YUser *user = [YUser objectWithKeyValues:responseObject];
+        YUserResult *user = [YUserResult objectWithKeyValues:responseObject];
         if (success) {
             success(user);
         }
