@@ -13,6 +13,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+//    NSLog(@"bar  -----  %p",self.navigationBar);
+//    UINavigationBar *bar = [[UINavigationBar alloc] init];
+//    [self setValue:bar forKey:@"navigationBar"];
+//    NSLog(@"bar  -----  %p",self.navigationBar);
     
 }
 

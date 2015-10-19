@@ -10,10 +10,32 @@
         <view contentMode="scaleToFill" id="Lh3-Oy-uOx" customClass="YRefreshFooter">
             <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="正在玩命加载中..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="giq-Yp-Pyg">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="TbJ-dF-8Zr">
+                    <rect key="frame" x="243" y="10" width="20" height="20"/>
+                    <animations/>
+                </activityIndicatorView>
+            </subviews>
             <animations/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="giq-Yp-Pyg" secondAttribute="trailing" id="JeE-eW-F15"/>
+                <constraint firstAttribute="bottom" secondItem="giq-Yp-Pyg" secondAttribute="bottom" id="cGg-e0-n1t"/>
+                <constraint firstItem="giq-Yp-Pyg" firstAttribute="top" secondItem="Lh3-Oy-uOx" secondAttribute="top" id="gW7-hf-Kjq"/>
+                <constraint firstItem="giq-Yp-Pyg" firstAttribute="leading" secondItem="Lh3-Oy-uOx" secondAttribute="leading" id="ltn-5I-qGQ"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="487" y="238"/>
+            <connections>
+                <outlet property="text" destination="giq-Yp-Pyg" id="C6K-fH-eAc"/>
+            </connections>
+            <point key="canvasLocation" x="404" y="235"/>
         </view>
     </objects>
 </document>

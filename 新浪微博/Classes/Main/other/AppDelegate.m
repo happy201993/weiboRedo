@@ -10,6 +10,7 @@
 #import "YTabBarController.h"
 #import "YNewfeatureController.h"
 #import "YOAuthViewController.h"
+#import "MBProgressHUD+MJ.h"
 @interface AppDelegate () <YOAuthViewControllerDelegate>
 
 @end
@@ -41,6 +42,30 @@
     self.window.rootViewController = rootVc;
     //04 设置为主窗口并可见
     [self.window makeKeyAndVisible];
+    
+    
+    
+    AFNetworkReachabilityManager *mgr = [AFNetworkReachabilityManager sharedManager];
+    [mgr setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        switch (status) {
+            case AFNetworkReachabilityStatusUnknown:
+                YLog(@"AFNetworkReachabilityStatusUnknown");
+            case AFNetworkReachabilityStatusNotReachable:
+                YLog(@"AFNetworkReachabilityStatusNotReachable");
+                [MBProgressHUD showError:@"网络错误!"];
+                break;
+            case AFNetworkReachabilityStatusReachableViaWWAN:
+                //手机网络
+                YLog(@"AFNetworkReachabilityStatusReachableViaWWAN");
+                break;
+            case AFNetworkReachabilityStatusReachableViaWiFi:
+                //wifi
+                 YLog(@"AFNetworkReachabilityStatusReachableViaWiFi");
+                break;
+        }
+    }];
+    //开始监控
+    [mgr startMonitoring];
     return YES;
 }
 

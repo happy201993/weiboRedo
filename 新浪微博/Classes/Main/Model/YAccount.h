@@ -28,7 +28,11 @@
 /**
  *  用户ID
  */
-@property (nonatomic,copy) NSString *uid;
+@property (nonatomic,strong) NSNumber *uid;
+/**
+ *  用户昵称
+ */
+@property (nonatomic,copy) NSString *screen_name;
 
 
 + (instancetype)accountWithDictionary:(NSDictionary *)dict;

@@ -13,7 +13,7 @@
 
 
 /** id	int64	微博ID*/
-@property (nonatomic,copy) NSString *ID;
+@property (nonatomic,strong) NSNumber *ID;
 
 /* user	object	微博作者的用户信息字段 详细*/
 @property (nonatomic,strong) YUser *user;

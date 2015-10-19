@@ -67,12 +67,12 @@
 
 + (void)hideHUDForView:(UIView *)view
 {
+    if (view == nil) view = [[UIApplication sharedApplication].windows lastObject];
     [self hideHUDForView:view animated:YES];
 }
 
 + (void)hideHUD
 {
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    [self hideHUDForView:window];
+    [self hideHUDForView:nil];
 }
 @end

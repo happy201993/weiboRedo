@@ -14,7 +14,7 @@
 /**
  *  用户的uid
  */
-@property (nonatomic,copy) NSString *uid;
+@property (nonatomic,strong) NSNumber *uid;
 /*    "screen_name": "zaku",*/
 @property (nonatomic,copy) NSString *screen_name;
 /*province	int	用户所在省级ID*/

@@ -13,8 +13,9 @@
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 #import "UIViewExt.h"
 #import "UIImage+Extension.h"
-#import "AFNetworking.h"
+#import "YHttpTool.h"
 #import "MJExtension.h"
+#import "MBProgressHUD+MJ.h"
 #import "YAccountVersionTool.h"
 #import "YAccount.h"
 #import "YStatuse.h"
@@ -45,6 +46,10 @@
 #define kSinaWeiboWebAuthURL               @"https://open.weibo.cn/2/oauth2/authorize"
 #define kSinaWeiboWebAccessTokenURL        @"https://open.weibo.cn/2/oauth2/access_token"
 #define kSinaWeiboStatusDomain @"https://api.weibo.com/2/statuses/home_timeline.json"
+#define kSinaWeiboPublishStatusWithoutImageDomain @"https://api.weibo.com/2/statuses/update.json"
+#define kSinaWeiboPublishStatusWithImageDomain @"https://api.weibo.com/2/statuses/upload.json"
+#define kSinaWeiboUserInfoDomain @"https://api.weibo.com/2/users/show.json"
+
 
 #define kAppKey             @"3064080673"
 #define kAppSecret          @"1b7d2ce8f0d30467f083b8aa98a06270"
@@ -53,6 +58,10 @@
 #define kAppKeyName @"client_id"
 #define kAppSecretName @"client_secret"
 #define kAppRedirectURIName @"redirect_uri"
+
+#define WeiboTokenKey @"access_token"
+#define WeiboPictureKey @"pic"
+#define WeiboTextKey @"status"
 
 //首页标题文字的字体
 #define YTitleFont [UIFont boldSystemFontOfSize:18]

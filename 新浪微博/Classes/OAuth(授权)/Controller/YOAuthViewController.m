@@ -65,6 +65,7 @@
     params[kAppRedirectURIName] = kAppRedirectURI;
     [mgr POST:kSinaWeiboWebAccessTokenURL parameters:params success:^(AFHTTPRequestOperation * _Nonnull operation, NSDictionary *responseObject) {
         [MBProgressHUD hideHUD];
+        YLog(@"windows ---- %@\n keyWindow ---- %@",[UIApplication sharedApplication].windows,[UIApplication sharedApplication].keyWindow);
         YLog(@"success ---- %@",responseObject);
         if ([self.delegate respondsToSelector:@selector(OAuthViewControllerDidLoginWithTokenInfo:)]) {
             [self.delegate OAuthViewControllerDidLoginWithTokenInfo:responseObject];
@@ -83,12 +84,16 @@
 #pragma mark - webView代理
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-//    [MBProgressHUD showMessage:@""];
+    [MBProgressHUD showMessage:@"正在加载中..."];
+    
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    
-//    [MBProgressHUD hideHUD];
+    [MBProgressHUD hideHUD];
+}
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    [MBProgressHUD hideHUD];
 }
 
 

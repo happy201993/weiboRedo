@@ -67,16 +67,12 @@
     return  CGRectMake(titleX, titleY, titleW, titleH);
 }
 
-
-
-
-#pragma mark - layoutSubviews
-- (void)layoutSubviews{
-    [super layoutSubviews];
+- (void)setTitle:(NSString *)title forState:(UIControlState)state
+{
+    [super setTitle:title forState:state];
     NSString *titleText = self.currentTitle;
     CGSize size = [titleText sizeWithFont:YTitleFont withMaxSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
-    self.width = size.width + size.height + 20;
-    
+    self.width = size.width + self.height + 10;
 }
 
 

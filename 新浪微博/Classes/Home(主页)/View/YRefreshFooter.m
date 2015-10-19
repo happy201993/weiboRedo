@@ -18,4 +18,19 @@
 }
 */
 
++ (instancetype)refreshFooter
+{
+    YRefreshFooter *footer = [[[NSBundle mainBundle] loadNibNamed:@"YRefreshFooter" owner:nil options:nil] lastObject];
+    return footer;
+}
+
+- (void)beginRefresh
+{
+    _refresh = YES;
+}
+- (void)endRefresh
+{
+    _refresh = NO;
+}
+
 @end
