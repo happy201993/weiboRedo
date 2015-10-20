@@ -76,17 +76,7 @@
 
 + (void)accessTokenWithParams:(YAccountParams *)params success:(void (^)(YAccount *account))success failure:(void (^)(NSError *error))failure
 {
-    [YHttpTool post:kSinaWeiboWebAccessTokenURL params:params.keyValues success:^(NSDictionary *responseObj){
-        YAccount *mResult = [YAccount objectWithKeyValues:responseObj];
-        if(success)
-        {
-            success(mResult);
-        }
-    } failure:^(NSError *error) {
-        if (failure) {
-            failure(error);
-        }
-    }];
+    [self postWithUrl:kSinaWeiboWebAccessTokenURL params:params class:[YAccount class] success:success failure:failure];
 }
 
 @end

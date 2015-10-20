@@ -7,7 +7,17 @@
 //
 
 #import "YNewStatusResult.h"
-
+#import "YPhoto.h"
 @implementation YNewStatusResult
+
++ (NSDictionary *)objectClassInArray
+{
+    return @{@"pic_ids":[YPhoto class]};
+}
+
++ (NSDictionary *)replacedKeyFromPropertyName
+{
+    return @{@"ID":@"id"};
+}
 
 @end

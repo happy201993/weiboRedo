@@ -231,7 +231,7 @@
     __weak __typeof(self)weakSelf = self;
     if (image == nil) {
         //发文字
-        [YStatusesTool pulishWeiboWithParams:params success:^(YNewStatusResult *result) {
+        [YStatusesTool pulishStatusWithParams:params success:^(YNewStatusResult *result) {
             [MBProgressHUD showSuccess:@"发送成功!"];
             [weakSelf cancel];
         } failure:^(NSError *error) {
@@ -241,19 +241,19 @@
     else{
         //发图片
         NSData *imageData = UIImageJPEGRepresentation(image, 1);
-//        [YHttpTool post:kSinaWeiboPublishStatusWithImageDomain params:params constructingBodyWithBlock:^(YFileFormData *formData) {
-//            formData.name = @"pic";
-//            formData.data = imageData;
-//            formData.fileName = @"yimage.jpg";
-//            formData.mimeType = @"image/jpeg";
-//        } success:^(id responseObj) {
-//            [MBProgressHUD hideHUD];
-//            [MBProgressHUD showSuccess:@"发送成功!"];
-//            [weakSelf cancel];
-//        } failure:^(NSError *error) {
-//            [MBProgressHUD hideHUD];
-//            [MBProgressHUD showError:@"发送失败!"];
-//        }];
+        [YStatusesTool pulishStatusWithParams:params constructingBodyWithBlock:^(YFileFormData *formData){
+            formData.name = @"pic";
+            formData.data = imageData;
+            formData.fileName = @"yimage.jpg";
+            formData.mimeType = @"image/jpeg";
+        } success:^(id responseObj) {
+            [MBProgressHUD hideHUD];
+            [MBProgressHUD showSuccess:@"发送成功!"];
+            [weakSelf cancel];
+        } failure:^(NSError *error) {
+            [MBProgressHUD hideHUD];
+            [MBProgressHUD showError:@"发送失败!"];
+        }];
     }
     
     

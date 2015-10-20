@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "YBaseServiceTool.h"
 #import "YUserResult.h"
 #import "YUserParams.h"
-@interface YUserInfoTool : NSObject
+@interface YUserInfoTool : YBaseServiceTool
 
 
 + (void)loadUserInfoWithParams:(YUserParams *)params success:(void(^)(YUserResult *result))success failure:(void (^)(NSError *error))failure;

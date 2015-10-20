@@ -12,17 +12,7 @@
 
 + (void)loadUserInfoWithParams:(YUserParams *)params success:(void(^)(YUserResult *result))success failure:(void (^)(NSError *error))failure
 {
-
-    [YHttpTool get:kSinaWeiboUserInfoDomain params:params.keyValues success:^(NSDictionary *responseObject) {
-        YUserResult *user = [YUserResult objectWithKeyValues:responseObject];
-        if (success) {
-            success(user);
-        }
-    } failure:^(NSError *error) {
-        if (failure) {
-            failure(error);
-        }
-    }];
+    [self getWithUrl:kSinaWeiboUserInfoDomain params:params class:[YUserResult class] success:success failure:failure];
 
 }
 

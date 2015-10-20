@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "YBaseServiceTool.h"
 #import "YAccountParams.h"
 #import "YAccount.h"
-@interface YAccountVersionTool : NSObject
+@interface YAccountVersionTool : YBaseServiceTool
 
 + (NSString *)currentVersion;
 + (void)writeCurrentVersionToDisk:(NSString *)currentVersion;

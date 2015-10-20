@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		042856851BD4C58500A9722E /* YStatusesTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 042856841BD4C58500A9722E /* YStatusesTool.m */; settings = {ASSET_TAGS = (); }; };
 		0428568E1BD4C5E300A9722E /* YUserInfoTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0428568D1BD4C5E300A9722E /* YUserInfoTool.m */; settings = {ASSET_TAGS = (); }; };
+		042C7B2B1BD5D10C00559917 /* YBaseServiceTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 042C7B2A1BD5D10C00559917 /* YBaseServiceTool.m */; settings = {ASSET_TAGS = (); }; };
 		0437551A1BD47C8100EC7EDA /* YFileFormData.m in Sources */ = {isa = PBXBuildFile; fileRef = 043755191BD47C8100EC7EDA /* YFileFormData.m */; settings = {ASSET_TAGS = (); }; };
 		044A17F11BD3DECA0036D992 /* YHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 044A17F01BD3DECA0036D992 /* YHttpTool.m */; settings = {ASSET_TAGS = (); }; };
 		048864C21BD539FD00EA583E /* YStatusParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 048864BF1BD539FD00EA583E /* YStatusParams.m */; settings = {ASSET_TAGS = (); }; };
@@ -124,6 +125,8 @@
 		042856841BD4C58500A9722E /* YStatusesTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YStatusesTool.m; sourceTree = "<group>"; };
 		0428568C1BD4C5E300A9722E /* YUserInfoTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUserInfoTool.h; sourceTree = "<group>"; };
 		0428568D1BD4C5E300A9722E /* YUserInfoTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUserInfoTool.m; sourceTree = "<group>"; };
+		042C7B291BD5D10C00559917 /* YBaseServiceTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBaseServiceTool.h; sourceTree = "<group>"; };
+		042C7B2A1BD5D10C00559917 /* YBaseServiceTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBaseServiceTool.m; sourceTree = "<group>"; };
 		043755181BD47C8100EC7EDA /* YFileFormData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFileFormData.h; sourceTree = "<group>"; };
 		043755191BD47C8100EC7EDA /* YFileFormData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFileFormData.m; sourceTree = "<group>"; };
 		044A17EF1BD3DECA0036D992 /* YHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHttpTool.h; sourceTree = "<group>"; };
@@ -854,6 +857,8 @@
 				042856841BD4C58500A9722E /* YStatusesTool.m */,
 				0428568C1BD4C5E300A9722E /* YUserInfoTool.h */,
 				0428568D1BD4C5E300A9722E /* YUserInfoTool.m */,
+				042C7B291BD5D10C00559917 /* YBaseServiceTool.h */,
+				042C7B2A1BD5D10C00559917 /* YBaseServiceTool.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -1134,6 +1139,7 @@
 				C64906AC1BCDEBC2003F2AAC /* MBProgressHUD+MJ.m in Sources */,
 				C64906A81BCDE814003F2AAC /* UIWebView+AFNetworking.m in Sources */,
 				C64633FB1BD371BC001713B1 /* YComposeToolBar.m in Sources */,
+				042C7B2B1BD5D10C00559917 /* YBaseServiceTool.m in Sources */,
 				C64633FC1BD371BC001713B1 /* YTextView.m in Sources */,
 				C61260471BC28D8B000EFFA0 /* YTabBarController.m in Sources */,
 				C6DDE2F01BC3B30900D7D2BC /* NSString+YExtension.m in Sources */,

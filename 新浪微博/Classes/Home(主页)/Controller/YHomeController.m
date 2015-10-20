@@ -132,7 +132,7 @@
 - (void)loadNewData{
     YStatusParams *params = [YStatusParams params];
     params.since_id = [[self.statuses firstObject] ID];
-    [YStatusesTool loadWeiboStatusWithParams:params success:^(YStatusResult *result) {
+    [YStatusesTool loadStatusesWithParams:params success:^(YStatusResult *result) {
         [self.refreshControl endRefreshing];
         NSArray *status = result.statuses;
         [self showPromptWithWBCount:status.count];
@@ -154,7 +154,7 @@
     YStatusParams *params = [YStatusParams params];
     NSInteger maxId = [[[self.statuses lastObject] ID] integerValue] - 1;
     params.max_id = [NSNumber numberWithInteger:maxId];
-    [YStatusesTool loadWeiboStatusWithParams:params success:^(YStatusResult *result) {
+    [YStatusesTool loadStatusesWithParams:params success:^(YStatusResult *result) {
         [self.footer endRefresh];
         NSArray *status = result.statuses;
         if (status.count == 0) return;

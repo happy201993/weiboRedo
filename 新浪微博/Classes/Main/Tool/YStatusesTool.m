@@ -7,35 +7,29 @@
 //
 
 #import "YStatusesTool.h"
-#import "YHttpTool.h"
+
 @implementation YStatusesTool
 
 
-+ (void)loadWeiboStatusWithParams:(YStatusParams *)params success:(void(^)(YStatusResult *result))success failure:(void (^)(NSError *error))failure
++ (void)loadStatusesWithParams:(YStatusParams *)params success:(void(^)(YStatusResult *result))success failure:(void (^)(NSError *error))failure
 {
-    NSDictionary *paramsDict = params.keyValues;
-    [YHttpTool get:kSinaWeiboStatusDomain params:paramsDict success:^(NSDictionary *responseObject) {
-        YStatusResult *mResult = [YStatusResult objectWithKeyValues:responseObject];
-        if(success)
-        {
-            success(mResult);
-        }
-    } failure:^(NSError *error) {
-        if (failure) {
-            failure(error);
-        }
-    }];
+    [self getWithUrl:kSinaWeiboStatusDomain params:params class:[YStatusResult class] success:success failure:failure];
 }
 
-+ (void)pulishWeiboWithParams:(YNewStatusParams *)params success:(void (^)(YNewStatusResult *result))success failure:(void (^)(NSError *error))failure
++ (void)pulishStatusWithParams:(YNewStatusParams *)params success:(void (^)(YNewStatusResult *result))success failure:(void (^)(NSError *error))failure
 {
-    [YHttpTool post:kSinaWeiboPublishStatusWithoutImageDomain params:params.keyValues success:^(NSDictionary *responseObj){
+    [self postWithUrl:kSinaWeiboPublishStatusWithoutImageDomain params:params class:[YNewStatusResult class] success:success failure:failure];
+}
+
+ + (void)pulishStatusWithParams:(YNewStatusParams *)params constructingBodyWithBlock:(void (^)(YFileFormData *formData))block success:(void (^)(YNewStatusResult *result))success failure:(void (^)(NSError *error))failure
+{
+    
+    [YHttpTool post:kSinaWeiboPublishStatusWithImageDomain params:params.keyValues constructingBodyWithBlock:block success:^(id responseObj) {
         YNewStatusResult *mResult = [YNewStatusResult objectWithKeyValues:responseObj];
         if(success)
         {
             success(mResult);
         }
-        
     } failure:^(NSError *error) {
         if (failure) {
             failure(error);
