@@ -15,8 +15,11 @@
 #import "UIImage+Extension.h"
 #import "YTabBar.h"
 #import "YComposeViewController.h"
+#import "YUserInfoTool.h"
 @interface YTabBarController () <UITabBarControllerDelegate,YTabBarDelegate>
-
+@property (nonatomic,weak) YHomeController *homeVc;
+@property (nonatomic,weak) YMessageController *messageVc;
+@property (nonatomic,weak) YProfileController *profileVc;
 @end
 
 @implementation YTabBarController
@@ -24,6 +27,7 @@
 + (void)initialize
 {
     [self configureTabBarItem];
+    [self addApplicationBadgePermission];
 }
 
 /**
@@ -43,16 +47,26 @@
     
 }
 
++ (void)addApplicationBadgePermission
+{
+    if (iOS8) {
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    }
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     YTabBar *tabBar = [[YTabBar alloc] init];
     tabBar.mDelegate = self;
     [self setValue:tabBar forKey:@"tabBar"];
-    
-    
     [self configureChildViewControllers];
     
+    [self newMessageCount];
+    
+    self.delegate = self;
 }
 
 
@@ -62,16 +76,42 @@
 //    YLog(@"%@",self.tabBar.subviews);
 }
 
-/**
- *  添加子控制器
- */
+
+#pragma mark - 获取最新消息未读数
+- (void)newMessageCount
+{
+    [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(timeAction:) userInfo:nil repeats:YES];
+}
+- (void)timeAction:(NSTimer *)timer
+{
+    YUserUnReadParams *params = [YUserUnReadParams params];
+    params.uid = [YAccountVersionTool account].uid;
+    [YUserInfoTool unreadCountWithParams:params success:^(YUserUnReadResult *result) {
+        YLog(@"new  --------- %d",result.status);
+        self.homeVc.tabBarItem.badgeValue = result.status?[NSString stringWithFormat:@"%d",result.status]:nil;
+        self.profileVc.tabBarItem.badgeValue = result.follower?[NSString stringWithFormat:@"%d",result.follower]:nil;
+        int allMessage = [result allMessageCount];
+        self.messageVc.tabBarItem.badgeValue = allMessage?[NSString stringWithFormat:@"%d",allMessage]:nil;
+        int allNumber = allMessage + result.status + result.follower;
+        if (allNumber > 99) {
+            allNumber = 99;
+        }
+        [UIApplication sharedApplication].applicationIconBadgeNumber = allNumber;
+    } failure:^(NSError *error) {
+        YLog(@"YTabBarController----newMessageCount %@",error);
+    }];
+}
+
+
+
+#pragma mark - 添加子控制器
 - (void)configureChildViewControllers{
     YHomeController *home = [[YHomeController alloc] init];
     [self addChildVC:home title:@"主页" image:@"tabbar_home" selectedImageName:@"tabbar_home_selected"];
-  
+    self.homeVc = home;
     YMessageController *message = [[YMessageController alloc] init];
     [self addChildVC:message title:@"消息" image:@"tabbar_message_center" selectedImageName:@"tabbar_message_center_selected"];
-   
+    self.messageVc = message;
                           
     YDiscoverController *discover = [[YDiscoverController alloc] init];
     [self addChildVC:discover title:@"发现" image:@"tabbar_discover" selectedImageName:@"tabbar_discover_selected"];
@@ -79,7 +119,7 @@
     
     YProfileController *profile = [[YProfileController alloc] init];
     [self addChildVC:profile title:@"我" image:@"tabbar_profile" selectedImageName:@"tabbar_profile_selected"];
-    
+    self.profileVc = profile;
 
 }
 
@@ -104,30 +144,6 @@
 
 
 
-//- (void)changeTabBarLabelTextColor
-//{
-//    NSUInteger i = 0;
-//    for (UIView *buttons in self.tabBar.subviews) {
-//        if (![buttons isKindOfClass:NSClassFromString(@"UITabBarButton")]) continue;
-//        
-//        for (UIView *btnSubs in buttons.subviews) {
-//            UILabel *label = nil;
-//            if ([btnSubs isKindOfClass:[UILabel class]]) {
-//                label = (UILabel *)btnSubs;
-//            }
-//            if (i == self.selectedIndex) { //选中的那个按钮
-//                label.textColor = [UIColor orangeColor];
-//            }
-//            else{ //不是选中那个按钮
-//                label.textColor = [UIColor lightGrayColor];
-//            }
-//        }
-//        
-//        i++;
-//    }
-//}
-
-
 #pragma mark - 自定义TabBar代理方法
 - (void)tabBarDidSelectedPlusButton:(YTabBar *)tabBar
 {
@@ -138,6 +154,17 @@
     [self presentViewController:navi animated:YES completion:nil];
 }
 
+#pragma mark - UITabBarController的代理方法
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(YNavigationController *)viewController
+{
+    static NSInteger lastSelectIndex = 0;
+    NSInteger currnetIndex = tabBarController.selectedIndex;
+    if (currnetIndex == lastSelectIndex && currnetIndex == 0) {
+        YHomeController *vc = (YHomeController *)viewController.topViewController;
+        [vc refresh];
+    }
+    lastSelectIndex = currnetIndex;
+}
 
 
 

@@ -29,6 +29,7 @@
 #define FourInch (YScreenHeight == 568.0)
 
 #define iOS7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
+#define iOS8 ([[UIDevice currentDevice].systemVersion doubleValue] >= 8.0)
 
 #ifdef DEBUG 
     #define YLog(...) NSLog(__VA_ARGS__)
@@ -49,6 +50,7 @@
 #define kSinaWeiboPublishStatusWithoutImageDomain @"https://api.weibo.com/2/statuses/update.json"
 #define kSinaWeiboPublishStatusWithImageDomain @"https://api.weibo.com/2/statuses/upload.json"
 #define kSinaWeiboUserInfoDomain @"https://api.weibo.com/2/users/show.json"
+#define kSinaWeiboUserUnReadMessageDomain @"https://rm.api.weibo.com/2/remind/unread_count.json"
 
 
 #define kAppKey             @"3064080673"

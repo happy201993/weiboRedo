@@ -12,7 +12,7 @@
 
 + (NSDictionary *)objectClassInArray
 {
-    return @{@"pic_ids":[YPhoto class]};
+    return @{@"pic_urls":[YPhoto class]};
 }
 
 + (NSDictionary *)replacedKeyFromPropertyName

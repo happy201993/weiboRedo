@@ -26,6 +26,6 @@
 
 
 
-+ (void)post:(NSString *)url params:(NSDictionary *)params constructingBodyWithBlock:(void (^) (YFileFormData *formData))block success:(void (^)(id responseObj))success failure:(void (^)(NSError *error))failure;
++ (void)post:(NSString *)url params:(NSDictionary *)params constructingBodyWith:(YFileFormData *)formData success:(void (^)(id responseObj))success failure:(void (^)(NSError *error))failure;
 
 @end

@@ -23,8 +23,12 @@
 
  + (void)pulishStatusWithParams:(YNewStatusParams *)params constructingBodyWithBlock:(void (^)(YFileFormData *formData))block success:(void (^)(YNewStatusResult *result))success failure:(void (^)(NSError *error))failure
 {
+      YFileFormData *mData = [[YFileFormData alloc] init];
+    if (block) {
+        block(mData);
+    }
     
-    [YHttpTool post:kSinaWeiboPublishStatusWithImageDomain params:params.keyValues constructingBodyWithBlock:block success:^(id responseObj) {
+    [YHttpTool post:kSinaWeiboPublishStatusWithImageDomain params:params.keyValues constructingBodyWith:mData success:^(id responseObj) {
         YNewStatusResult *mResult = [YNewStatusResult objectWithKeyValues:responseObj];
         if(success)
         {

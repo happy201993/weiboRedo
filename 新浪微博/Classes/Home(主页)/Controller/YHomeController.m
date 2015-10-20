@@ -142,9 +142,10 @@
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
         [self.statuses insertObjects:status atIndexes:indexSet];
         [self.tableView reloadData];
-        
-     }failure:^(NSError *error)
-     {
+        //修改badgeValue的值
+        self.tabBarItem.badgeValue = nil;
+        [UIApplication sharedApplication].applicationIconBadgeNumber -= status.count;
+     }failure:^(NSError *error){
          YLog(@"error -- %@",error);
          [self.refreshControl endRefreshing];
      }];
@@ -286,6 +287,27 @@
     
 }
 
+
+- (void)refresh
+{
+    NSString *badge = self.tabBarItem.badgeValue;
+    if(badge == nil){
+        //滑动到顶部
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    }else{
+        //刷新
+//        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+//        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        [self.refreshControl beginRefreshing];
+        [self.tableView setContentOffset:CGPointMake(0, -120) animated:YES];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self loadNewData];
+        });
+        
+        
+    }
+}
 
 /*
 #pragma mark - Navigation

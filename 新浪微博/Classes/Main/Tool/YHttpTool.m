@@ -40,15 +40,13 @@
     }];
 }
 
-+ (void)post:(NSString *)url params:(NSDictionary *)params constructingBodyWithBlock:(void (^) (YFileFormData *formData))block success:(void (^)(id responseObj))success failure:(void (^)(NSError *error))failure
++ (void)post:(NSString *)url params:(NSDictionary *)params constructingBodyWith:(YFileFormData *)mData success:(void (^)(id responseObj))success failure:(void (^)(NSError *error))failure;
 {
     AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
     [mgr POST:url parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        if (block) {
-            YFileFormData *mData = [[YFileFormData alloc] init];
-            block(mData);
-            [formData appendPartWithFileData:mData.data name:mData.name fileName:mData.fileName mimeType:mData.mimeType];
-        }
+    
+     [formData appendPartWithFileData:mData.data name:mData.name fileName:mData.fileName mimeType:mData.mimeType];
+        
     } success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         if (success) {
             success(responseObject);
