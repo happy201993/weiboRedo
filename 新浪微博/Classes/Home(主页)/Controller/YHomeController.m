@@ -17,11 +17,13 @@
 #import "YRefreshFooter.h"
 #import "YStatusesTool.h"
 #import "YUserInfoTool.h"
+#import "YStatusCell.h"
+#import "YStatusFrame.h"
 
 
 @interface YHomeController () <YPopMenuDelegate>
 
-@property (nonatomic,strong) NSMutableArray *statuses;
+@property (nonatomic,strong) NSMutableArray *statusesFrame;
 @property (nonatomic,weak) YRefreshFooter *footer;
 @property (nonatomic,weak) YTitleButton *titleView;
 
@@ -36,15 +38,28 @@
     [self configureRefreshControl];
     [self configureRefreshFooter];
     
+       
 }
 
 #pragma mark - 数据懒加载
-- (NSMutableArray *)statuses
+- (NSMutableArray *)statusesFrame
 {
-    if (_statuses == nil) {
-        _statuses = [NSMutableArray array];
+    if (_statusesFrame == nil) {
+        _statusesFrame = [NSMutableArray array];
     }
-    return _statuses;
+    return _statusesFrame;
+}
+
+- (NSMutableArray *)statusFrameArrayWithStatusArray:(NSArray *)statuses
+{
+    NSMutableArray *array = [NSMutableArray array];
+  
+    for (YStatuse *status in statuses) {
+        YStatusFrame *frame = [[YStatusFrame alloc] init];
+        frame.status = status;
+        [array addObject:frame];
+    }
+    return array;
 }
 
 
@@ -131,7 +146,8 @@
 #pragma mark - 加载数据
 - (void)loadNewData{
     YStatusParams *params = [YStatusParams params];
-    params.since_id = [[self.statuses firstObject] ID];
+    YStatusFrame *firstStatusFrame = [self.statusesFrame firstObject] ;
+    params.since_id = [[firstStatusFrame status] ID];
     [YStatusesTool loadStatusesWithParams:params success:^(YStatusResult *result) {
         [self.refreshControl endRefreshing];
         NSArray *status = result.statuses;
@@ -140,7 +156,8 @@
         //把最新的数据插入到数组最前面
         NSRange range = NSMakeRange(0, status.count);
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
-        [self.statuses insertObjects:status atIndexes:indexSet];
+        NSArray *statusFrames = [self statusFrameArrayWithStatusArray:status];
+        [self.statusesFrame insertObjects:statusFrames atIndexes:indexSet];
         [self.tableView reloadData];
         //修改badgeValue的值
         self.tabBarItem.badgeValue = nil;
@@ -153,13 +170,15 @@
 
 - (void)loadMoreData{
     YStatusParams *params = [YStatusParams params];
-    NSInteger maxId = [[[self.statuses lastObject] ID] integerValue] - 1;
+    YStatusFrame *lastStatusFrame = [self.statusesFrame lastObject];
+    NSInteger maxId = [[lastStatusFrame.status ID] integerValue] - 1;
     params.max_id = [NSNumber numberWithInteger:maxId];
     [YStatusesTool loadStatusesWithParams:params success:^(YStatusResult *result) {
         [self.footer endRefresh];
         NSArray *status = result.statuses;
         if (status.count == 0) return;
-        [self.statuses addObjectsFromArray:status];
+        NSArray *statusFrames = [self statusFrameArrayWithStatusArray:status];
+        [self.statusesFrame addObjectsFromArray:statusFrames];
         [self.tableView reloadData];
         
     }failure:^(NSError *error)
@@ -227,7 +246,7 @@
 #pragma mark - tableView的数据源及代理方法
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger count = self.statuses.count;
+    NSInteger count = self.statusesFrame.count;
     tableView.tableFooterView.hidden = count == 0;
     return count;
 }
@@ -236,18 +255,19 @@
 {
     //1 创建cell
     static NSString *ID = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    YStatusCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
+        cell = [[YStatusCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
     }
-    YStatuse *statuse = self.statuses[indexPath.row];
-    
     //2 设置模型
-    cell.textLabel.text = statuse.text;
-    cell.detailTextLabel.text = statuse.user.screen_name;
-    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:statuse.user.profile_image_url] placeholderImage:[UIImage imageWithImageName:@"avatar_default"]];
-    
+    cell.statusFrame = self.statusesFrame[indexPath.row];
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    YStatusFrame *frame = self.statusesFrame[indexPath.row];
+    return frame.cellHeight;
 }
 
 
@@ -269,7 +289,7 @@
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (self.footer.isRefreshing || self.statuses.count == 0) {
+    if (self.footer.isRefreshing || self.statusesFrame.count == 0) {
         return;
     }
     CGFloat delta = self.view.height - self.tabBarController.tabBar.height;

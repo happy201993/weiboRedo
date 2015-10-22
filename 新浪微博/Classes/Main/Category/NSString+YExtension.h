@@ -13,7 +13,7 @@
  *  返回文字所占用的大小
  *
  *  @param font    字体
- *  @param maxSize 最大大小限制
+ *  @param maxSize 最大大小限制 maxSize == CGSizeZero 单行情况
  */
 - (CGSize)sizeWithFont:(UIFont *)font withMaxSize:(CGSize)maxSize;
 @end

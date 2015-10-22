@@ -12,6 +12,10 @@
 
 - (CGSize)sizeWithFont:(UIFont *)font withMaxSize:(CGSize)maxSize
 {
+    if(CGSizeEqualToSize(CGSizeZero, maxSize))
+    {
+        maxSize = CGSizeMake(MAXFLOAT, MAXFLOAT);
+    }
     NSDictionary *attr = @{NSFontAttributeName : font};
     return [self boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil].size;
 }

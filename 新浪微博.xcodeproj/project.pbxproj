@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		042311671BD72E7C006BF486 /* YOriginStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0423115E1BD72E7C006BF486 /* YOriginStatusView.m */; settings = {ASSET_TAGS = (); }; };
+		042311681BD72E7C006BF486 /* YRetweetedStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 042311601BD72E7C006BF486 /* YRetweetedStatusView.m */; settings = {ASSET_TAGS = (); }; };
+		042311691BD72E7C006BF486 /* YStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042311621BD72E7C006BF486 /* YStatusCell.m */; settings = {ASSET_TAGS = (); }; };
+		0423116A1BD72E7C006BF486 /* YStatusDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 042311641BD72E7C006BF486 /* YStatusDetailView.m */; settings = {ASSET_TAGS = (); }; };
+		0423116B1BD72E7C006BF486 /* YStatusToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 042311661BD72E7C006BF486 /* YStatusToolBar.m */; settings = {ASSET_TAGS = (); }; };
+		042311751BD72E9B006BF486 /* YOriginStatusViewFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 0423116E1BD72E9B006BF486 /* YOriginStatusViewFrame.m */; settings = {ASSET_TAGS = (); }; };
+		042311761BD72E9B006BF486 /* YRetweetedStatusViewFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 042311701BD72E9B006BF486 /* YRetweetedStatusViewFrame.m */; settings = {ASSET_TAGS = (); }; };
+		042311771BD72E9B006BF486 /* YStatusDetailViewFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 042311721BD72E9B006BF486 /* YStatusDetailViewFrame.m */; settings = {ASSET_TAGS = (); }; };
+		042311781BD72E9B006BF486 /* YStatusFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 042311741BD72E9B006BF486 /* YStatusFrame.m */; settings = {ASSET_TAGS = (); }; };
 		042856851BD4C58500A9722E /* YStatusesTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 042856841BD4C58500A9722E /* YStatusesTool.m */; settings = {ASSET_TAGS = (); }; };
 		0428568E1BD4C5E300A9722E /* YUserInfoTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0428568D1BD4C5E300A9722E /* YUserInfoTool.m */; settings = {ASSET_TAGS = (); }; };
 		042C7B2B1BD5D10C00559917 /* YBaseServiceTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 042C7B2A1BD5D10C00559917 /* YBaseServiceTool.m */; settings = {ASSET_TAGS = (); }; };
@@ -23,11 +32,6 @@
 		048864DB1BD5407800EA583E /* YAccountParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 048864DA1BD5407800EA583E /* YAccountParams.m */; settings = {ASSET_TAGS = (); }; };
 		048864DE1BD5477E00EA583E /* YAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 048864DD1BD5477E00EA583E /* YAccount.m */; settings = {ASSET_TAGS = (); }; };
 		048864E11BD547D400EA583E /* YBaseParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 048864E01BD547D400EA583E /* YBaseParams.m */; settings = {ASSET_TAGS = (); }; };
-		04EB84FB1BD65BAA001A0705 /* YStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EB84FA1BD65BAA001A0705 /* YStatusCell.m */; settings = {ASSET_TAGS = (); }; };
-		04EB84FE1BD65C32001A0705 /* YStatusDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EB84FD1BD65C32001A0705 /* YStatusDetailView.m */; settings = {ASSET_TAGS = (); }; };
-		04EB85011BD65C40001A0705 /* YStatusToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EB85001BD65C40001A0705 /* YStatusToolBar.m */; settings = {ASSET_TAGS = (); }; };
-		04EB85041BD65C4F001A0705 /* YOriginStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EB85031BD65C4F001A0705 /* YOriginStatusView.m */; settings = {ASSET_TAGS = (); }; };
-		04EB85071BD65C77001A0705 /* YRetweetedStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EB85061BD65C77001A0705 /* YRetweetedStatusView.m */; settings = {ASSET_TAGS = (); }; };
 		C61260421BC28D1E000EFFA0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C61260401BC28D1E000EFFA0 /* AppDelegate.m */; settings = {ASSET_TAGS = (); }; };
 		C61260431BC28D1E000EFFA0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C61260411BC28D1E000EFFA0 /* main.m */; settings = {ASSET_TAGS = (); }; };
 		C61260471BC28D8B000EFFA0 /* YTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C61260451BC28D8B000EFFA0 /* YTabBarController.m */; settings = {ASSET_TAGS = (); }; };
@@ -128,6 +132,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0423115D1BD72E7C006BF486 /* YOriginStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOriginStatusView.h; sourceTree = "<group>"; };
+		0423115E1BD72E7C006BF486 /* YOriginStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOriginStatusView.m; sourceTree = "<group>"; };
+		0423115F1BD72E7C006BF486 /* YRetweetedStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRetweetedStatusView.h; sourceTree = "<group>"; };
+		042311601BD72E7C006BF486 /* YRetweetedStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRetweetedStatusView.m; sourceTree = "<group>"; };
+		042311611BD72E7C006BF486 /* YStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YStatusCell.h; sourceTree = "<group>"; };
+		042311621BD72E7C006BF486 /* YStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YStatusCell.m; sourceTree = "<group>"; };
+		042311631BD72E7C006BF486 /* YStatusDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YStatusDetailView.h; sourceTree = "<group>"; };
+		042311641BD72E7C006BF486 /* YStatusDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YStatusDetailView.m; sourceTree = "<group>"; };
+		042311651BD72E7C006BF486 /* YStatusToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YStatusToolBar.h; sourceTree = "<group>"; };
+		042311661BD72E7C006BF486 /* YStatusToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YStatusToolBar.m; sourceTree = "<group>"; };
+		0423116D1BD72E9B006BF486 /* YOriginStatusViewFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOriginStatusViewFrame.h; sourceTree = "<group>"; };
+		0423116E1BD72E9B006BF486 /* YOriginStatusViewFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOriginStatusViewFrame.m; sourceTree = "<group>"; };
+		0423116F1BD72E9B006BF486 /* YRetweetedStatusViewFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRetweetedStatusViewFrame.h; sourceTree = "<group>"; };
+		042311701BD72E9B006BF486 /* YRetweetedStatusViewFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRetweetedStatusViewFrame.m; sourceTree = "<group>"; };
+		042311711BD72E9B006BF486 /* YStatusDetailViewFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YStatusDetailViewFrame.h; sourceTree = "<group>"; };
+		042311721BD72E9B006BF486 /* YStatusDetailViewFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YStatusDetailViewFrame.m; sourceTree = "<group>"; };
+		042311731BD72E9B006BF486 /* YStatusFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YStatusFrame.h; sourceTree = "<group>"; };
+		042311741BD72E9B006BF486 /* YStatusFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YStatusFrame.m; sourceTree = "<group>"; };
 		042856831BD4C58500A9722E /* YStatusesTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YStatusesTool.h; sourceTree = "<group>"; };
 		042856841BD4C58500A9722E /* YStatusesTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YStatusesTool.m; sourceTree = "<group>"; };
 		0428568C1BD4C5E300A9722E /* YUserInfoTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUserInfoTool.h; sourceTree = "<group>"; };
@@ -160,16 +182,6 @@
 		048864DD1BD5477E00EA583E /* YAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YAccount.m; sourceTree = "<group>"; };
 		048864DF1BD547D400EA583E /* YBaseParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBaseParams.h; sourceTree = "<group>"; };
 		048864E01BD547D400EA583E /* YBaseParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBaseParams.m; sourceTree = "<group>"; };
-		04EB84F91BD65BAA001A0705 /* YStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YStatusCell.h; sourceTree = "<group>"; };
-		04EB84FA1BD65BAA001A0705 /* YStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YStatusCell.m; sourceTree = "<group>"; };
-		04EB84FC1BD65C32001A0705 /* YStatusDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YStatusDetailView.h; sourceTree = "<group>"; };
-		04EB84FD1BD65C32001A0705 /* YStatusDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YStatusDetailView.m; sourceTree = "<group>"; };
-		04EB84FF1BD65C40001A0705 /* YStatusToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YStatusToolBar.h; sourceTree = "<group>"; };
-		04EB85001BD65C40001A0705 /* YStatusToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YStatusToolBar.m; sourceTree = "<group>"; };
-		04EB85021BD65C4F001A0705 /* YOriginStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOriginStatusView.h; sourceTree = "<group>"; };
-		04EB85031BD65C4F001A0705 /* YOriginStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOriginStatusView.m; sourceTree = "<group>"; };
-		04EB85051BD65C77001A0705 /* YRetweetedStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRetweetedStatusView.h; sourceTree = "<group>"; };
-		04EB85061BD65C77001A0705 /* YRetweetedStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRetweetedStatusView.m; sourceTree = "<group>"; };
 		C612603F1BC28D1E000EFFA0 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C61260401BC28D1E000EFFA0 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C61260411BC28D1E000EFFA0 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -363,6 +375,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0423115C1BD72E7C006BF486 /* 微博Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0423115D1BD72E7C006BF486 /* YOriginStatusView.h */,
+				0423115E1BD72E7C006BF486 /* YOriginStatusView.m */,
+				0423115F1BD72E7C006BF486 /* YRetweetedStatusView.h */,
+				042311601BD72E7C006BF486 /* YRetweetedStatusView.m */,
+				042311631BD72E7C006BF486 /* YStatusDetailView.h */,
+				042311641BD72E7C006BF486 /* YStatusDetailView.m */,
+				042311651BD72E7C006BF486 /* YStatusToolBar.h */,
+				042311661BD72E7C006BF486 /* YStatusToolBar.m */,
+				042311611BD72E7C006BF486 /* YStatusCell.h */,
+				042311621BD72E7C006BF486 /* YStatusCell.m */,
+			);
+			path = "微博Cell";
+			sourceTree = "<group>";
+		};
+		0423116C1BD72E9B006BF486 /* 微博Frame模型 */ = {
+			isa = PBXGroup;
+			children = (
+				0423116D1BD72E9B006BF486 /* YOriginStatusViewFrame.h */,
+				0423116E1BD72E9B006BF486 /* YOriginStatusViewFrame.m */,
+				0423116F1BD72E9B006BF486 /* YRetweetedStatusViewFrame.h */,
+				042311701BD72E9B006BF486 /* YRetweetedStatusViewFrame.m */,
+				042311711BD72E9B006BF486 /* YStatusDetailViewFrame.h */,
+				042311721BD72E9B006BF486 /* YStatusDetailViewFrame.m */,
+				042311731BD72E9B006BF486 /* YStatusFrame.h */,
+				042311741BD72E9B006BF486 /* YStatusFrame.m */,
+			);
+			path = "微博Frame模型";
+			sourceTree = "<group>";
+		};
 		048864BD1BD539FD00EA583E /* HomeStatuses */ = {
 			isa = PBXGroup;
 			children = (
@@ -485,6 +529,7 @@
 		C61260301BC28D1E000EFFA0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0423115C1BD72E7C006BF486 /* 微博Cell */,
 				C6A6A51C1BC67F67007AF464 /* YTitleButton.h */,
 				C6A6A51D1BC67F67007AF464 /* YTitleButton.m */,
 				C66550CD1BCB6FBC004ED04F /* YPopMenu.h */,
@@ -501,6 +546,7 @@
 		C61260311BC28D1E000EFFA0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0423116C1BD72E9B006BF486 /* 微博Frame模型 */,
 				C64907411BCE4165007CDFAD /* YStatuse.h */,
 				C64907421BCE4165007CDFAD /* YStatuse.m */,
 				C64907441BCE4183007CDFAD /* YUser.h */,
@@ -566,16 +612,6 @@
 		C61260381BC28D1E000EFFA0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				04EB84F91BD65BAA001A0705 /* YStatusCell.h */,
-				04EB84FA1BD65BAA001A0705 /* YStatusCell.m */,
-				04EB84FC1BD65C32001A0705 /* YStatusDetailView.h */,
-				04EB84FD1BD65C32001A0705 /* YStatusDetailView.m */,
-				04EB84FF1BD65C40001A0705 /* YStatusToolBar.h */,
-				04EB85001BD65C40001A0705 /* YStatusToolBar.m */,
-				04EB85021BD65C4F001A0705 /* YOriginStatusView.h */,
-				04EB85031BD65C4F001A0705 /* YOriginStatusView.m */,
-				04EB85051BD65C77001A0705 /* YRetweetedStatusView.h */,
-				04EB85061BD65C77001A0705 /* YRetweetedStatusView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1134,6 +1170,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				042311761BD72E9B006BF486 /* YRetweetedStatusViewFrame.m in Sources */,
 				C66410611BCF3F1700656CA7 /* UIImage+GIF.m in Sources */,
 				C633AE8D1BCF816800FB489C /* MJPropertyKey.m in Sources */,
 				C649069A1BCDE814003F2AAC /* AFSecurityPolicy.m in Sources */,
@@ -1147,6 +1184,7 @@
 				C61260511BC28E31000EFFA0 /* YDiscoverController.m in Sources */,
 				C64907461BCE4183007CDFAD /* YUser.m in Sources */,
 				C61260541BC28E3E000EFFA0 /* YProfileController.m in Sources */,
+				042311691BD72E7C006BF486 /* YStatusCell.m in Sources */,
 				C64814121BC2AFC7005C83B8 /* UIViewExt.m in Sources */,
 				C649069B1BCDE814003F2AAC /* AFURLConnectionOperation.m in Sources */,
 				C664105D1BCF3F1700656CA7 /* SDWebImageDownloaderOperation.m in Sources */,
@@ -1156,9 +1194,11 @@
 				C633AE921BCF816800FB489C /* NSObject+MJProperty.m in Sources */,
 				048864CC1BD53A5A00EA583E /* YUserParams.m in Sources */,
 				C612604E1BC28E1A000EFFA0 /* YMessageController.m in Sources */,
+				0423116A1BD72E7C006BF486 /* YStatusDetailView.m in Sources */,
 				C61421811BCC013F00114B86 /* YTabBar.m in Sources */,
 				C64906A51BCDE814003F2AAC /* UIImageView+AFNetworking.m in Sources */,
 				C61421881BCC0E2000114B86 /* YComposeViewController.m in Sources */,
+				042311671BD72E7C006BF486 /* YOriginStatusView.m in Sources */,
 				C659A92C1BD1E0F80055FB48 /* YPrompt.m in Sources */,
 				C66410601BCF3F1700656CA7 /* UIButton+WebCache.m in Sources */,
 				C64906B31BCDF7D8003F2AAC /* YAccountVersionTool.m in Sources */,
@@ -1179,14 +1219,13 @@
 				C64633FC1BD371BC001713B1 /* YTextView.m in Sources */,
 				C61260471BC28D8B000EFFA0 /* YTabBarController.m in Sources */,
 				C6DDE2F01BC3B30900D7D2BC /* NSString+YExtension.m in Sources */,
-				04EB85071BD65C77001A0705 /* YRetweetedStatusView.m in Sources */,
+				042311681BD72E7C006BF486 /* YRetweetedStatusView.m in Sources */,
 				C649069D1BCDE814003F2AAC /* AFURLResponseSerialization.m in Sources */,
 				048864D41BD53E1100EA583E /* YNewStatusParams.m in Sources */,
 				C64906971BCDE814003F2AAC /* AFHTTPRequestOperationManager.m in Sources */,
 				C64633FF1BD3722B001713B1 /* YImagePicker.m in Sources */,
 				C633AE911BCF816800FB489C /* NSObject+MJKeyValue.m in Sources */,
 				048864CD1BD53A5A00EA583E /* YUserResult.m in Sources */,
-				04EB85011BD65C40001A0705 /* YStatusToolBar.m in Sources */,
 				C64906961BCDE814003F2AAC /* AFHTTPRequestOperation.m in Sources */,
 				C633AE8A1BCF816800FB489C /* MJExtensionConst.m in Sources */,
 				0437551A1BD47C8100EC7EDA /* YFileFormData.m in Sources */,
@@ -1194,7 +1233,9 @@
 				C633AE901BCF816800FB489C /* NSObject+MJCoding.m in Sources */,
 				C66410641BCF3F1700656CA7 /* UIImageView+WebCache.m in Sources */,
 				C633AE891BCF816800FB489C /* MJDictionaryCache.m in Sources */,
+				042311751BD72E9B006BF486 /* YOriginStatusViewFrame.m in Sources */,
 				C633AE8C1BCF816800FB489C /* MJProperty.m in Sources */,
+				042311771BD72E9B006BF486 /* YStatusDetailViewFrame.m in Sources */,
 				C664101C1BCF3A9900656CA7 /* YPhoto.m in Sources */,
 				C64906A41BCDE814003F2AAC /* UIButton+AFNetworking.m in Sources */,
 				C64EEF381BC670BB002E7166 /* YSearchBar.m in Sources */,
@@ -1207,15 +1248,14 @@
 				C6DDE2EC1BC3B04400D7D2BC /* FirstController.m in Sources */,
 				048864DB1BD5407800EA583E /* YAccountParams.m in Sources */,
 				C64906A11BCDE814003F2AAC /* AFNetworkActivityIndicatorManager.m in Sources */,
+				0423116B1BD72E7C006BF486 /* YStatusToolBar.m in Sources */,
 				C64906991BCDE814003F2AAC /* AFNetworkReachabilityManager.m in Sources */,
 				C6DDE2E81BC3AECD00D7D2BC /* SecondController.m in Sources */,
-				04EB84FE1BD65C32001A0705 /* YStatusDetailView.m in Sources */,
-				04EB84FB1BD65BAA001A0705 /* YStatusCell.m in Sources */,
 				048864E11BD547D400EA583E /* YBaseParams.m in Sources */,
 				048864D71BD53F7500EA583E /* YNewStatusResult.m in Sources */,
-				04EB85041BD65C4F001A0705 /* YOriginStatusView.m in Sources */,
 				C633AE8F1BCF816800FB489C /* NSObject+MJClass.m in Sources */,
 				C612604B1BC28E03000EFFA0 /* YHomeController.m in Sources */,
+				042311781BD72E9B006BF486 /* YStatusFrame.m in Sources */,
 				C612D72B1BCC96E600490947 /* YNewfeatureController.m in Sources */,
 				048864C21BD539FD00EA583E /* YStatusParams.m in Sources */,
 				C664105B1BCF3F1700656CA7 /* SDWebImageDecoder.m in Sources */,
